@@ -320,7 +320,7 @@ void wasm_init() {
 
     Serial.print("Free Heap: "); Serial.println(ESP.getFreeHeap(),DEC);
 
-    //result = m3_ParseModule (m3_env, &m3_module, app_wasm, app_wasm_len);
+    //result = m3_ParseModule (m3_env, &m3_module, app_wasm, app_wasm_len); // load wasm from header file
     result = m3_ParseModule (m3_env, &m3_module, buf, app_wasm_len);
     if (result) FATAL("ParseModule", result);
 
