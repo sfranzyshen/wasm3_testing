@@ -165,25 +165,25 @@ void loop() {
 //	colorWipe(0, 255, 0, 50); // Green
 //	colorWipe(0, 0, 255, 50); // Blue
 
-	println("colorWipe32 ... ");
-	colorWipe32(Color(255, 0, 0), 50); // Red
-	colorWipe32(Color(0, 255, 0), 50); // Green
-	colorWipe32(Color(0, 0, 255), 50); // Blue
+//	println("colorWipe32 ... ");
+//	colorWipe32(Color(255, 0, 0), 50); // Red
+//	colorWipe32(Color(0, 255, 0), 50); // Green
+//	colorWipe32(Color(0, 0, 255), 50); // Blue
 
 //	println("theaterChase ... ");
 //	theaterChase(127, 127, 127, 50); // White
 //	theaterChase(127, 0, 0, 50); // Red
 //	theaterChase(0, 0, 127, 50); // Blue
 	
-//	println("theaterChase32 ... ");
-//	theaterChase32(Color(127, 127, 127), 50); // White
-//	theaterChase32(Color(127, 0, 0), 50);     // Red
-//	theaterChase32(Color( 0, 0, 127), 50);    // Blue
+	println("theaterChase32 ... ");
+	theaterChase32(Color(127, 127, 127), 50); // White
+	theaterChase32(Color(127, 0, 0), 50);     // Red
+	theaterChase32(Color( 0, 0, 127), 50);    // Blue
 
 //	println("theaterChaseRainbow ... ");
 //	theaterChaseRainbow(50);
 	println("theaterChaseRainbow32 ... ");
-	theaterChaseRainbow32(50);
+	theaterChaseRainbow32(20);
 
 //	println("rainbow ... ");
 //	rainbow(20);

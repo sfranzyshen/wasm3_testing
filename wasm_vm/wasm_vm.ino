@@ -7,15 +7,18 @@
 #endif
 #include <Adafruit_NeoPixel.h>
 
+#define LED_PIN   18
+#define LED_COUNT 1
+
 #define FATAL(func, msg) { Serial.print("Fatal: " func " "); Serial.println(msg); return; }
 
-#define WASM_STACK_SLOTS    (2*1024)
+#define WASM_STACK_SLOTS    (4*1024)
 #define NATIVE_STACK_SIZE   (32*1024)
 
 // For (most) devices that cannot allocate a 64KiB wasm page
-#define WASM_MEMORY_LIMIT   (8*1024)
+//#define WASM_MEMORY_LIMIT   (8*1024)
 
-Adafruit_NeoPixel strip(10, 10, NEO_GRB + NEO_KHZ800); // Hack ~ set to anything ... then redefine in setup()
+Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 
 IM3Environment  m3_env;
 IM3Runtime      m3_runtime;
@@ -265,7 +268,12 @@ size_t readWasmFile(const char *path, uint8_t *buf)
 
 void wasm_loop() {
    if(m3_init) {
-      Serial.print("Free Heap: "); Serial.println(ESP.getFreeHeap(),DEC);
+      Serial.printf("Free   heap: %d\n", ESP.getFreeHeap());
+#ifdef ESP32
+      Serial.printf("Max   block: %d\n", ESP.getMaxAllocHeap(),DEC); // largest block of heap that can be allocated at once
+#elif defined(ESP8266)
+      Serial.printf("Max   block: %d\n", ESP.getMaxFreeBlockSize(),DEC); // largest contiguous free RAM block in the heap
+#endif
       M3Result result = m3_CallV (m3_loop);
       if (result) {
           m3_init = false;
@@ -304,7 +312,8 @@ void wasm_init() {
     if (app_wasm_len == 0)
       FATAL("ReadWasm", "File not found")
 
-    uint8_t * buf = new uint8_t[app_wasm_len];
+    //uint8_t * buf = new uint8_t[app_wasm_len];
+    byte* buf = (byte*) malloc(app_wasm_len);
     size_t read_bytes = readWasmFile("/app.wasm", buf);
     if (read_bytes == 0)
       FATAL("ReadWasm", "File not found")
@@ -318,21 +327,22 @@ void wasm_init() {
     }
 */
 
-    Serial.print("Free Heap: "); Serial.println(ESP.getFreeHeap(),DEC);
+    Serial.print("Free After malloc: "); Serial.println(ESP.getFreeHeap(),DEC);
 
     //result = m3_ParseModule (m3_env, &m3_module, app_wasm, app_wasm_len); // load wasm from header file
     result = m3_ParseModule (m3_env, &m3_module, buf, app_wasm_len);
     if (result) FATAL("ParseModule", result);
 
     //delete[] buf;
-    delete buf;
-
-    Serial.print("Free Heap: "); Serial.println(ESP.getFreeHeap(),DEC);
+    //delete buf;
+    free(buf);
+    
+    Serial.print("Free After free: "); Serial.println(ESP.getFreeHeap(),DEC);
 
     result = m3_LoadModule (m3_runtime, m3_module);
     if (result) FATAL("LoadModule", result);
 
-    Serial.print("Free Heap: "); Serial.println(ESP.getFreeHeap(),DEC);
+    Serial.print("Free After LoadModule: "); Serial.println(ESP.getFreeHeap(),DEC);
 
     result = LinkArduino (m3_runtime);
     if (result) FATAL("LinkArduino", result);
@@ -370,12 +380,16 @@ void wasm_init() {
 void setup() {
     Serial.begin(115200);
     Serial.println("\nWasm3 v" M3_VERSION " (" M3_ARCH "), build " __DATE__ " " __TIME__);
-    Serial.print("Free Heap: "); Serial.println(ESP.getFreeHeap(),DEC);
+    Serial.printf("Total  heap: %d\n", ESP.getHeapSize());
+    Serial.printf("Free   heap: %d\n", ESP.getFreeHeap());
 #ifdef ESP32
-    Serial.print("Max  Blck: "); Serial.println(ESP.getMaxAllocHeap(),DEC); // largest block of heap that can be allocated at once
+    Serial.printf("Max   block: %d\n", ESP.getMaxAllocHeap(),DEC); // largest block of heap that can be allocated at once
+    if(psramFound()) {
+      Serial.printf("Total PSRAM: %d\n", ESP.getPsramSize());
+      Serial.printf("Free  PSRAM: %d\n", ESP.getFreePsram());
+    }
 #elif defined(ESP8266)
-    Serial.print("Frag Heap: "); Serial.println(ESP.getHeapFragmentation(), DEC); // the fragmentation metric (0% is clean)
-    Serial.print("Max  Blck: "); Serial.println(ESP.getMaxFreeBlockSize(),DEC); // largest contiguous free RAM block in the heap
+    Serial.printf("Max   block: %d\n", ESP.getMaxFreeBlockSize(),DEC); // largest contiguous free RAM block in the heap
 #endif
     SPIFFS.begin();
     strip.updateLength(8);
@@ -384,7 +398,7 @@ void setup() {
     strip.show();
     strip.setBrightness(50);    
     wasm_init();
-    Serial.print("Free Heap: "); Serial.println(ESP.getFreeHeap(),DEC);
+    Serial.print("Free After init: "); Serial.println(ESP.getFreeHeap(),DEC);
 }
 
 void loop() {
