@@ -2,16 +2,18 @@
 #include <m3_env.h>
 //#include "app.wasm.h"
 #include <FS.h>
+#ifdef ESP32
 #include <SPIFFS.h>
+#endif
 #include <Adafruit_NeoPixel.h>
 
 #define FATAL(func, msg) { Serial.print("Fatal: " func " "); Serial.println(msg); return; }
 
-#define WASM_STACK_SLOTS    2048
+#define WASM_STACK_SLOTS    (2*1024)
 #define NATIVE_STACK_SIZE   (32*1024)
 
 // For (most) devices that cannot allocate a 64KiB wasm page
-//#define WASM_MEMORY_LIMIT   24576
+#define WASM_MEMORY_LIMIT   (8*1024)
 
 Adafruit_NeoPixel strip(10, 10, NEO_GRB + NEO_KHZ800); // Hack ~ set to anything ... then redefine in setup()
 
@@ -74,7 +76,7 @@ m3ApiRawFunction(m3_arduino_delay) {
 }
 */
 
-m3ApiRawFunction(m3_arduino_delay) {
+m3ApiRawFunction(m3_arduino_delay) { // hooked
   m3ApiGetArg   (uint32_t, milli)
 
   unsigned long targetMillis = millis() + milli;
@@ -297,25 +299,29 @@ void wasm_init() {
     m3_runtime->memoryLimit = WASM_MEMORY_LIMIT;
 #endif
 
-    size_t app_wasm_size = readWasmFileSize("/app.wasm");
-    if (app_wasm_size == 0)
+    // load wasm from filesystem
+    size_t app_wasm_len = readWasmFileSize("/app.wasm");
+    if (app_wasm_len == 0)
       FATAL("ReadWasm", "File not found")
 
-    uint8_t * buf = new uint8_t[app_wasm_size];
-//    uint8_t buf[app_wasm_size];
+    uint8_t * buf = new uint8_t[app_wasm_len];
     size_t read_bytes = readWasmFile("/app.wasm", buf);
     if (read_bytes == 0)
       FATAL("ReadWasm", "File not found")
-
 /*
+    // load wasm from rom
+    //uint8_t buf[app_wasm_len];
+    uint8_t * buf = new uint8_t[app_wasm_len];
     if (buf) {
       memcpy_P(buf, app_wasm, app_wasm_len);
       //Serial.write(buf, app_wasm_len); // dump the buffer.
     }
 */
+
     Serial.print("Free Heap: "); Serial.println(ESP.getFreeHeap(),DEC);
 
-    result = m3_ParseModule (m3_env, &m3_module, buf, app_wasm_size);
+    //result = m3_ParseModule (m3_env, &m3_module, app_wasm, app_wasm_len);
+    result = m3_ParseModule (m3_env, &m3_module, buf, app_wasm_len);
     if (result) FATAL("ParseModule", result);
 
     //delete[] buf;
