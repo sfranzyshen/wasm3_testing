@@ -83,7 +83,7 @@ m3ApiRawFunction(m3_arduino_delay) { // hooked
   unsigned long currentMillis = millis();
   
   while(currentMillis < targetMillis) {
-    yield();
+    yield(); // add code here
     currentMillis = millis();
   }
   m3ApiSuccess();
@@ -389,5 +389,5 @@ void setup() {
 
 void loop() {
     wasm_loop();
-    yield();
+    yield(); // add code here
 }
