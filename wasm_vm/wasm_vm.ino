@@ -371,6 +371,12 @@ void setup() {
     Serial.begin(115200);
     Serial.println("\nWasm3 v" M3_VERSION " (" M3_ARCH "), build " __DATE__ " " __TIME__);
     Serial.print("Free Heap: "); Serial.println(ESP.getFreeHeap(),DEC);
+#ifdef ESP32
+    Serial.print("Max  Blck: "); Serial.println(ESP.getMaxAllocHeap(),DEC); // largest block of heap that can be allocated at once
+#elif defined(ESP8266)
+    Serial.print("Frag Heap: "); Serial.println(ESP.getHeapFragmentation(), DEC); // the fragmentation metric (0% is clean)
+    Serial.print("Max  Blck: "); Serial.println(ESP.getMaxFreeBlockSize(),DEC); // largest contiguous free RAM block in the heap
+#endif
     SPIFFS.begin();
     strip.updateLength(8);
     strip.setPin(4);
