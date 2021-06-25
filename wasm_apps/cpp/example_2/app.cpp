@@ -71,10 +71,10 @@ void loop() {
   colorWipe(Color(0, 0, 255), 50); // Blue
 
   // Send a theater pixel chase in...
-  println("theaterChase ... ");
-  theaterChase(Color(127, 127, 127), 50); // White
-  theaterChase(Color(127, 0, 0), 50); // Red
-  theaterChase(Color(0, 0, 127), 50); // Blue
+//  println("theaterChase ... ");
+//  theaterChase(Color(127, 127, 127), 50); // White
+//  theaterChase(Color(127, 0, 0), 50); // Red
+//  theaterChase(Color(0, 0, 127), 50); // Blue
 
   println("rainbow ... ");
   rainbow(20);

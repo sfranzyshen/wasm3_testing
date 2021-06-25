@@ -76,10 +76,10 @@ void loop() {
   theaterChase(Color(127, 0, 0), 50); // Red
   theaterChase(Color(0, 0, 127), 50); // Blue
 
-  println("rainbow ... ");
-  rainbow(20);
-  println("theaterChaseRainbow ... ");
-  theaterChaseRainbow(20);
+//  println("rainbow ... ");
+//  rainbow(20);
+//  println("theaterChaseRainbow ... ");
+//  theaterChaseRainbow(20);
 
   println("strandtest ... loop");
   

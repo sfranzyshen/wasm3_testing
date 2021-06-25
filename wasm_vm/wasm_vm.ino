@@ -12,11 +12,11 @@
 
 #define FATAL(func, msg) { Serial.print("Fatal: " func " "); Serial.println(msg); return; }
 
-#define WASM_STACK_SLOTS    (4*1024) // started at 2048
+#define WASM_STACK_SLOTS    (2*1024) // started at 2048
 #define NATIVE_STACK_SIZE   (32*1024)
 
 // For (most) devices that cannot allocate a 64KiB wasm page
-//#define WASM_MEMORY_LIMIT   (8*1024)
+#define WASM_MEMORY_LIMIT   (3*1024)
 
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 
