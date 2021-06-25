@@ -12,7 +12,7 @@
 
 #define FATAL(func, msg) { Serial.print("Fatal: " func " "); Serial.println(msg); return; }
 
-#define WASM_STACK_SLOTS    (4*1024)
+#define WASM_STACK_SLOTS    (4*1024) // started at 2048
 #define NATIVE_STACK_SIZE   (32*1024)
 
 // For (most) devices that cannot allocate a 64KiB wasm page
@@ -318,7 +318,7 @@ void wasm_init() {
     if (read_bytes == 0)
       FATAL("ReadWasm", "File not found")
 /*
-    // load wasm from rom
+    // load wasm from rom (PROGMEM)
     //uint8_t buf[app_wasm_len];
     uint8_t * buf = new uint8_t[app_wasm_len];
     if (buf) {

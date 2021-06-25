@@ -165,10 +165,10 @@ void loop() {
 //	colorWipe(0, 255, 0, 50); // Green
 //	colorWipe(0, 0, 255, 50); // Blue
 
-//	println("colorWipe32 ... ");
-//	colorWipe32(Color(255, 0, 0), 50); // Red
-//	colorWipe32(Color(0, 255, 0), 50); // Green
-//	colorWipe32(Color(0, 0, 255), 50); // Blue
+	println("colorWipe32 ... ");
+	colorWipe32(Color(255, 0, 0), 50); // Red
+	colorWipe32(Color(0, 255, 0), 50); // Green
+	colorWipe32(Color(0, 0, 255), 50); // Blue
 
 //	println("theaterChase ... ");
 //	theaterChase(127, 127, 127, 50); // White
