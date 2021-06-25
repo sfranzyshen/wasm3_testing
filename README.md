@@ -6,12 +6,12 @@ I'm having a hell of a time trying to get wasm3 working on the esp8266/esp32 pla
 I can get all of the code to run ... seperatly ... but not all together.
 
 ## Example #1 (Fails)
-[ino source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_vm/wasm_vm.ino), 
-[app cpp source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_1/app.cpp), 
-[app h source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_1/arduino_api.h), 
-[app build script](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_1/build.sh), 
-[app wasm](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_1/app.wasm), 
-[app wat](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_1/app.wat)
+* [ino source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_vm/wasm_vm.ino), 
+* [app cpp source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_1/app.cpp), 
+* [app h source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_1/arduino_api.h), 
+* [app build script](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_1/build.sh), 
+* [app wasm](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_1/app.wasm), 
+* [app wat](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_1/app.wat)
 
 Fails With [Stack Trace](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_1/trace.txt)
 ```
@@ -39,12 +39,12 @@ void loop() {
 }
 ```
 ## Example #2 (Works)
-[ino source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_vm/wasm_vm.ino), 
-[app cpp source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_2/app.cpp), 
-[app h source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_2/arduino_api.h), 
-[app build script](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_2/build.sh), 
-[app wasm](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_2/app.wasm), 
-[app wat](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_2/app.wat)
+* [ino source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_vm/wasm_vm.ino), 
+* [app cpp source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_2/app.cpp), 
+* [app h source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_2/arduino_api.h), 
+* [app build script](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_2/build.sh), 
+* [app wasm](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_2/app.wasm), 
+* [app wat](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_2/app.wat)
 ```
 // loop()
 void loop() {
@@ -70,12 +70,12 @@ void loop() {
 }
 ```
 ## Example #3 (Works)
-[ino source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_vm/wasm_vm.ino), 
-[app cpp source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_3/app.cpp), 
-[app h source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_3/arduino_api.h), 
-[app build script](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_3/build.sh), 
-[app wasm](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_3/app.wasm), 
-[app wat](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_3/app.wat)
+* [ino source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_vm/wasm_vm.ino), 
+* [app cpp source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_3/app.cpp), 
+* [app h source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_3/arduino_api.h), 
+* [app build script](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_3/build.sh), 
+* [app wasm](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_3/app.wasm), 
+* [app wat](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_3/app.wat)
 ```
 // loop()
 void loop() {
