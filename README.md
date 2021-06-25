@@ -3,7 +3,7 @@
 I'm having a hell of a time trying to get wasm3 working on the Arduino esp8266/esp32 platforms ... this repository is a collection of the code I used for testing and the results I have gotten ...
 
 # TLDR #
-I can get all of the code to run ... separately ... but not all together.
+I can get all of the code to run ... separately ... but not all together. If I REM out some code it will work ... and if I undo that and I REM out some different code it will also work ... but undo all REM outs ... and it fails ...
 
 ## Example #1 (Fails)
 * [ino source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_vm/wasm_vm.ino), 
