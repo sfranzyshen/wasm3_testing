@@ -1,6 +1,6 @@
 # Wasm3 Testing #
 
-I'm having a hell of a time trying to get wasm3 working on the Arduino esp8266/esp32 platforms ... this repository is a collection of code I used for testing and the results I have had ...
+I'm having a hell of a time trying to get wasm3 working on the Arduino esp8266/esp32 platforms ... this repository is a collection of the code I used for testing and the results I have gotten ...
 
 # TLDR #
 I can get all of the code to run ... separately ... but not all together.
