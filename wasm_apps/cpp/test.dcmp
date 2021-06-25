@@ -1,0 +1,136 @@
+export memory memory(initial: 1, max: 0);
+
+data d_strandteststartcolorWipethea(offset: 1024) = 
+  "\0astrandtest ... start\00colorWipe ... \00theaterChase ... \00rainbow"
+  " ... \00theaterChaseRainbow ... \00strandtest ... loop\00\0a";
+
+import function arduino_numPixels():int;
+
+import function arduino_setPixelColor32(a:int, b:int);
+
+import function arduino_show();
+
+import function arduino_delay(a:int);
+
+import function arduino_Wheel(a:int):int;
+
+import function arduino_print(a:int, b:int);
+
+import function arduino_Color(a:int, b:int, c:int):int;
+
+export function start() {
+  nop
+}
+
+function f_i(a:int) {
+  var b:int;
+  if (arduino_numPixels()) {
+    loop L_b {
+      arduino_setPixelColor32(b & 65535, a);
+      arduino_show();
+      arduino_delay(50);
+      if (arduino_numPixels() > ((b = b + 1) & 65535)) continue L_b;
+    }
+  }
+}
+
+function f_j(a:int) {
+  var c:int;
+  var b:int;
+  var e:int;
+  loop L_a {
+    var d:int = 0;
+    loop L_b {
+      if (arduino_numPixels()) {
+        b = 0;
+        c = 0;
+        loop L_d {
+          arduino_setPixelColor32(c + d & 65535, a);
+          if (arduino_numPixels() > (b = (c = b + 3) & 65535)) continue L_d;
+        }
+      }
+      arduino_show();
+      arduino_delay(50);
+      if (arduino_numPixels()) {
+        b = 0;
+        c = 0;
+        loop L_f {
+          arduino_setPixelColor32(c + d & 65535, 0);
+          if (arduino_numPixels() > (b = (c = b + 3) & 65535)) continue L_f;
+        }
+      }
+      d = d + 1;
+      if (d != 3) continue L_b;
+    }
+    e = e + 1;
+    if (e != 10) continue L_a;
+  }
+}
+
+export function setup() {
+  arduino_print(1024, 21);
+  arduino_print(1137, 1);
+}
+
+export function loop() {
+  var b:int;
+  var a:int;
+  var d:int;
+  arduino_print(1046, 14);
+  arduino_print(1137, 1);
+  f_i(arduino_Color(255, 0, 0));
+  f_i(arduino_Color(0, 255, 0));
+  f_i(arduino_Color(0, 0, 255));
+  arduino_print(1061, 17);
+  arduino_print(1137, 1);
+  f_j(arduino_Color(127, 127, 127));
+  f_j(arduino_Color(127, 0, 0));
+  f_j(arduino_Color(0, 0, 127));
+  arduino_print(1079, 12);
+  arduino_print(1137, 1);
+  loop L_a {
+    if (arduino_numPixels()) {
+      a = 0;
+      loop L_c {
+        arduino_setPixelColor32(a & 65535, arduino_Wheel(a + b & 255));
+        if (arduino_numPixels() > ((a = a + 1) & 65535)) continue L_c;
+      }
+    }
+    arduino_show();
+    arduino_delay(20);
+    b = b + 1;
+    if ((b & 65535) < 256) continue L_a;
+  }
+  arduino_print(1092, 24);
+  arduino_print(1137, 1);
+  loop L_d {
+    var c:int = 0;
+    loop L_e {
+      if (arduino_numPixels()) {
+        a = 0;
+        b = 0;
+        loop L_g {
+          arduino_setPixelColor32(b + c & 65535, arduino_Wheel((a + d) % 255));
+          if (arduino_numPixels() > (a = (b = a + 3) & 65535)) continue L_g;
+        }
+      }
+      arduino_show();
+      arduino_delay(20);
+      if (arduino_numPixels()) {
+        a = 0;
+        b = 0;
+        loop L_i {
+          arduino_setPixelColor32(b + c & 65535, 0);
+          if (arduino_numPixels() > (a = (b = a + 3) & 65535)) continue L_i;
+        }
+      }
+      c = c + 1;
+      if (c != 3) continue L_e;
+    }
+    d = d + 1;
+    if (d != 256) continue L_d;
+  }
+  arduino_print(1117, 19);
+  arduino_print(1137, 1);
+}
+
