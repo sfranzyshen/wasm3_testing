@@ -1,156 +1,60 @@
 #include "arduino_api.h"
 
-// colorWipe()
-void colorWipe(uint8_t r, uint8_t g, uint8_t b, uint8_t wait) {
-	uint16_t i = 0;
-	while(i < numPixels()) {
-		setPixelColor(i, r, g, b);
-		show();
-		delay(wait);
-		i++;
-	}
+// Fill the dots one after the other with a color
+void colorWipe(uint32_t c, uint8_t wait) {
+  for(uint16_t i=0; i<numPixels(); i++) {
+    setPixelColor32(i, c);
+    show();
+    delay(wait);
+  }
 }
 
-// colorWipe32()
-void colorWipe32(uint32_t color, uint8_t wait) {
-	int i = 0;
-	while(i < numPixels()) {
-		setPixelColor32(i, color);
-		show();
-		delay(wait);
-		i++;
-	}
-}
-
-// theaterChase32()
-void theaterChase32(uint32_t color, uint8_t wait) {
-	int a = 0, b, c;
-	while(a < 10) {
-		b = 0;
-		while(b < 3) {
-			clear();
-			c = b;
-			while(c < numPixels()) {
-				setPixelColor32(c, color);
-				c += 3;
-			}
-			show();
-			delay(wait);
-			b++;
-		}
-		a++;
-	}
-}
-
-// theaterChase()
-void theaterChase(uint8_t r, uint8_t g, uint8_t b, uint8_t wait) {
-	int j = 0, q;
-	uint16_t i = 0;
-	while(j < 10) {  //do 10 cycles of chasing
-		q = 0;
-		while(q < 3) {
-			i = 0;
-			while(i < numPixels()) {
-				setPixelColor(i + q, r, g, b);    //turn every third pixel on
-				i = i + 3;
-			}
-			show();
-			delay(wait);
-			i = 0;
-			while(i < numPixels()) {
-				setPixelColor(i + q, 0, 0, 0);        //turn every third pixel off
-				i = i + 3;
-			}
-			q++;
-		}
-		j++;
-	}
-}
-
-// rainbow32()
-void rainbow32(uint8_t wait) {
-	uint16_t j = 0, i;
-	int p;
-	while(j <= 255) {
-		i = 0;
-		while(i < numPixels()) {
-			p = (i + j) & 255;
-			setPixelColor32(i, Wheel(p));
-			i++;
-		}
-		show();
-		delay(wait);
-		j++;
-	}
-}
-
-// rainbow()
 void rainbow(uint8_t wait) {
-	uint16_t j = 0, i;
-	int p;
-	while(j <= 255) {
-		i = 0;
-		while(i < numPixels()) {
-			p = (i + j) & 255;
-			setPixelColor(i, WheelR(p), WheelG(p), WheelB(p));
-			i++;
-		}
-		show();
-		delay(wait);
-		j++;
-	}
+  uint16_t i, j;
+
+  for(j=0; j<=255; j++) {
+    for(i=0; i<numPixels(); i++) {
+      setPixelColor32(i, Wheel((i+j) & 255));
+    }
+    show();
+    delay(wait);
+  }
 }
 
-// theaterChaseRainbow()
+//Theatre-style crawling lights.
+void theaterChase(uint32_t c, uint8_t wait) {
+  for (int j=0; j<10; j++) {  //do 10 cycles of chasing
+    for (int q=0; q < 3; q++) {
+      for (uint16_t i=0; i < numPixels(); i=i+3) {
+        setPixelColor32(i+q, c);    //turn every third pixel on
+      }
+      show();
+
+      delay(wait);
+
+      for (uint16_t i=0; i < numPixels(); i=i+3) {
+        setPixelColor32(i+q, 0);        //turn every third pixel off
+      }
+    }
+  }
+}
+
+//Theatre-style crawling lights with rainbow effect
 void theaterChaseRainbow(uint8_t wait) {
-	int j = 0, q, p;
-	uint16_t i;
-	while(j <= 255) {     // cycle all 256 colors in the wheel
-		q = 0;
-		while(q < 3) {
-			i = 0;
-			while(i < numPixels()) {
-				p = (i + j) % 255;
-				setPixelColor(i + q, WheelR(p), WheelG(p), WheelB(p));    //turn every third pixel on
-				i = i + 3;
-			}
-			show();
-			delay(wait);
-			i = 0;
-			while(i < numPixels()) {
-				setPixelColor(i + q, 0, 0, 0);        //turn every third pixel off
-				i = i + 3;
-			}
-			q++;
-		}
-		j++;
-	}
-}
+  for (int j=0; j <= 255; j++) {     // cycle all 256 colors in the wheel
+    for (int q=0; q < 3; q++) {
+      for (uint16_t i=0; i < numPixels(); i=i+3) {
+        setPixelColor32(i+q, Wheel( (i+j) % 255));    //turn every third pixel on
+      }
+      show();
 
-// theaterChaseRainbow32()
-void theaterChaseRainbow32(uint8_t wait) {
-	int j = 0, q, p;
-	uint16_t i;
-	while(j <= 255) {     // cycle all 256 colors in the wheel
-		q = 0;
-		while(q < 3) {
-			i = 0;
-			while(i < numPixels()) {
-				p = (i + j) % 255;
-				setPixelColor32(i + q, Wheel(p));    //turn every third pixel on
-				i = i + 3;
-			}
-			show();
-			delay(wait);
-			i = 0;
-			while(i < numPixels()) {
-				setPixelColor32(i + q, Color(0, 0, 0));        //turn every third pixel off
-				i = i + 3;
-			}
-			q++;
-		}
-		j++;
-	}
+      delay(wait);
+
+      for (uint16_t i=0; i < numPixels(); i=i+3) {
+        setPixelColor32(i+q, 0);        //turn every third pixel off
+      }
+    }
+  }
 }
 
 // setup()
@@ -160,36 +64,23 @@ void setup() {
 
 // loop()
 void loop() {
-//	println("colorWipe ... ");
-//	colorWipe(255, 0, 0, 50); // Red
-//	colorWipe(0, 255, 0, 50); // Green
-//	colorWipe(0, 0, 255, 50); // Blue
+  // Some example procedures showing how to display to the pixels:
+  println("colorWipe ... ");
+  colorWipe(Color(255, 0, 0), 50); // Red
+  colorWipe(Color(0, 255, 0), 50); // Green
+  colorWipe(Color(0, 0, 255), 50); // Blue
 
-	println("colorWipe32 ... ");
-	colorWipe32(Color(255, 0, 0), 50); // Red
-	colorWipe32(Color(0, 255, 0), 50); // Green
-	colorWipe32(Color(0, 0, 255), 50); // Blue
+  // Send a theater pixel chase in...
+//  println("theaterChase ... ");
+//  theaterChase(Color(127, 127, 127), 50); // White
+//  theaterChase(Color(127, 0, 0), 50); // Red
+//  theaterChase(Color(0, 0, 127), 50); // Blue
 
-//	println("theaterChase ... ");
-//	theaterChase(127, 127, 127, 50); // White
-//	theaterChase(127, 0, 0, 50); // Red
-//	theaterChase(0, 0, 127, 50); // Blue
-	
-	println("theaterChase32 ... ");
-	theaterChase32(Color(127, 127, 127), 50); // White
-	theaterChase32(Color(127, 0, 0), 50);     // Red
-	theaterChase32(Color( 0, 0, 127), 50);    // Blue
+  println("rainbow ... ");
+  rainbow(20);
+  println("theaterChaseRainbow ... ");
+  theaterChaseRainbow(20);
 
-//	println("theaterChaseRainbow ... ");
-//	theaterChaseRainbow(50);
-	println("theaterChaseRainbow32 ... ");
-	theaterChaseRainbow32(20);
-
-//	println("rainbow ... ");
-//	rainbow(20);
-	println("rainbow32 ... ");
-	rainbow32(20);
-	
-	println("strandtest ... loop");
+  println("strandtest ... loop");
+  
 }
-
