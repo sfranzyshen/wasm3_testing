@@ -1,3 +1,6 @@
+Guru Meditation Error: Core  1 panic'ed (Unhandled debug exception)
+Debug exception reason: Stack canary watchpoint triggered (loopTask)
+
 PC: 0x400877fa: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 111
 EXCVADDR: 0x00000000
 
@@ -222,3 +225,118 @@ Decoding stack results
 0x40082ee5: op_Loop at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 852
 0x4008f501: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
 0x40082ee5: op_Loop at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 852
+
+
+
+PC: 0x4008f988: op_ContinueLoopIf at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 1207
+EXCVADDR: 0x00000000
+
+Decoding stack results
+0x4008f988: op_ContinueLoopIf at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 1207
+0x4008d9c3: op_i32_NotEqual_rs at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 171
+0x4008f1f1: op_SetSlot_i32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 938
+0x4008e2e7: op_i32_Add_ss at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 193
+0x4008f991: op_ContinueLoopIf at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 1207
+0x4008d9c3: op_i32_NotEqual_rs at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 171
+0x4008f1f1: op_SetSlot_i32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 938
+0x4008e2e7: op_i32_Add_ss at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 193
+0x4008f991: op_ContinueLoopIf at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 1207
+0x4008df11: op_u32_GreaterThan_rs at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 180
+0x4008f1f1: op_SetSlot_i32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 938
+0x4008e746: op_u32_And_rs at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 207
+0x4008f1f1: op_SetSlot_i32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 938
+0x4008e2e7: op_i32_Add_ss at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 193
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x4008f1f1: op_SetSlot_i32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 938
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008e746: op_u32_And_rs at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 207
+0x4008e2e7: op_i32_Add_ss at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 193
+0x40082ed5: op_Loop at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 852
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f865: op_If_s at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 894
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x4008f991: op_ContinueLoopIf at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 1207
+0x4008df11: op_u32_GreaterThan_rs at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 180
+0x4008f1f1: op_SetSlot_i32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 938
+0x4008e746: op_u32_And_rs at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 207
+0x4008f1f1: op_SetSlot_i32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 938
+0x4008e2e7: op_i32_Add_ss at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 193
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x4008f1f1: op_SetSlot_i32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 938
+0x40083579: op_u32_Remainder_sr at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 232
+0x4008e2e7: op_i32_Add_ss at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 193
+0x4008f1f1: op_SetSlot_i32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 938
+0x4008e746: op_u32_And_rs at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 207
+0x4008e2e7: op_i32_Add_ss at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 193
+0x40082ed5: op_Loop at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 852
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f865: op_If_s at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 894
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x40082ed5: op_Loop at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 852
+
+
+PC: 0x400d3ba4: ReadLebSigned at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_core.c line 381
+EXCVADDR: 0x00000000
+
+Decoding stack results
+0x400d3ba4: ReadLebSigned at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_core.c line 381
+0x400d3ca2: ReadLEB_i32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_core.c line 456
+0x400d2259: Compile_Const_i32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 1062
+0x400d3301: CompileBlockStatements at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 2496
+0x400d34d8: CompileBlock at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 2628
+0x400d36ba: Compile_If at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 1873
+0x400d3301: CompileBlockStatements at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 2496
+0x400d34d8: CompileBlock at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 2628
+0x400d3579: Compile_LoopOrBlock at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 1810
+0x400d3301: CompileBlockStatements at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 2496
+0x400d34d8: CompileBlock at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 2628
+0x400d3579: Compile_LoopOrBlock at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 1810
+0x400d3301: CompileBlockStatements at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 2496
+0x400d3951: CompileFunction at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 2790
+0x40087857: op_Compile at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 757
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x40087879: op_Compile at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 764
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x40087879: op_Compile at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 764
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x40087879: op_Compile at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 764
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541

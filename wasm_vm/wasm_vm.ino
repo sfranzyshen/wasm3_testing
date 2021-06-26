@@ -1,22 +1,22 @@
 #include <wasm3.h>
 #include <m3_env.h>
-//#include "app.wasm.h"
-#include <FS.h>
+#include "app.wasm.h"
+//#include <FS.h>
 #ifdef ESP32
-#include <SPIFFS.h>
+//#include <SPIFFS.h>
 #endif
 #include <Adafruit_NeoPixel.h>
 
 #define LED_PIN   18
-#define LED_COUNT 1
+#define LED_COUNT 10
 
 #define FATAL(func, msg) { Serial.print("Fatal: " func " "); Serial.println(msg); return; }
 
-#define WASM_STACK_SLOTS    (2*1024) // started at 2048
+#define WASM_STACK_SLOTS    (4*1024) // started at 2048
 #define NATIVE_STACK_SIZE   (32*1024)
 
 // For (most) devices that cannot allocate a 64KiB wasm page
-#define WASM_MEMORY_LIMIT   (3*1024)
+//#define WASM_MEMORY_LIMIT   (3*1024)
 
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 
@@ -27,6 +27,7 @@ IM3Function     m3_setup;
 IM3Function     m3_loop;
 bool            m3_init = false;
 
+/*
 uint8_t WheelR(uint8_t Pos) {
   Pos = 255 - Pos;
   if(Pos < 85) { return 255 - Pos * 3; }
@@ -62,6 +63,7 @@ uint32_t Wheel(uint8_t Pos) {
   Pos -= 170;
   return strip.Color(Pos * 3, 255 - Pos * 3, 0);
 }
+*/
 
 m3ApiRawFunction(m3_arduino_millis) {
     m3ApiReturnType (uint32_t)
@@ -135,7 +137,7 @@ m3ApiRawFunction(m3_arduino_ColorHSV) {
     m3ApiReturn(strip.ColorHSV(hue, sat, val));
 }
 */
-
+/*
 m3ApiRawFunction(m3_arduino_setPixelColor) {
   m3ApiGetArg     (uint16_t, n)
   m3ApiGetArg     (uint8_t, r)
@@ -146,8 +148,9 @@ m3ApiRawFunction(m3_arduino_setPixelColor) {
 
   m3ApiSuccess();
 }
+*/
 
-m3ApiRawFunction(m3_arduino_setPixelColor32) {
+m3ApiRawFunction(m3_arduino_setPixelColor) {
   m3ApiGetArg     (uint16_t, n)
   m3ApiGetArg     (uint32_t, c)
 
@@ -164,7 +167,7 @@ m3ApiRawFunction(m3_arduino_Color) {
   
     m3ApiReturn(strip.Color(r, g, b));
 }
-
+/*
 m3ApiRawFunction(m3_arduino_Wheel) {
     m3ApiReturnType (uint32_t)
     m3ApiGetArg     (uint8_t, pos)
@@ -192,6 +195,7 @@ m3ApiRawFunction(m3_arduino_WheelB) {
   
     m3ApiReturn(WheelR(pos));
 }
+*/
 
 M3Result  LinkArduino  (IM3Runtime runtime) {
     IM3Module module = runtime->modules;
@@ -202,20 +206,20 @@ M3Result  LinkArduino  (IM3Runtime runtime) {
     m3_LinkRawFunction (module, arduino, "print",            "v(*i)",  &m3_arduino_print);
     m3_LinkRawFunction (module, arduino, "show",             "v()",    &m3_arduino_show);
     m3_LinkRawFunction (module, arduino, "clear",            "v()",    &m3_arduino_clear);
-    m3_LinkRawFunction (module, arduino, "setPixelColor",    "v(iiii)",&m3_arduino_setPixelColor);
-    m3_LinkRawFunction (module, arduino, "setPixelColor32",  "v(ii)",  &m3_arduino_setPixelColor32);
+//    m3_LinkRawFunction (module, arduino, "setPixelColor",    "v(iiii)",&m3_arduino_setPixelColor);
+    m3_LinkRawFunction (module, arduino, "setPixelColor",  "v(ii)",  &m3_arduino_setPixelColor);
     //m3_LinkRawFunction (module, arduino, "gamma32",          "i(i)",   &m3_arduino_gamma32);
     //m3_LinkRawFunction (module, arduino, "ColorHSV",         "i(iii)", &m3_arduino_ColorHSV);
-    m3_LinkRawFunction (module, arduino, "Wheel",            "i(i)",   &m3_arduino_Wheel);
-    m3_LinkRawFunction (module, arduino, "WheelR",           "i(i)",   &m3_arduino_WheelR);
-    m3_LinkRawFunction (module, arduino, "WheelG",           "i(i)",   &m3_arduino_WheelG);
-    m3_LinkRawFunction (module, arduino, "WheelB",           "i(i)",   &m3_arduino_WheelB);
+//    m3_LinkRawFunction (module, arduino, "Wheel",            "i(i)",   &m3_arduino_Wheel);
+//    m3_LinkRawFunction (module, arduino, "WheelR",           "i(i)",   &m3_arduino_WheelR);
+//    m3_LinkRawFunction (module, arduino, "WheelG",           "i(i)",   &m3_arduino_WheelG);
+//    m3_LinkRawFunction (module, arduino, "WheelB",           "i(i)",   &m3_arduino_WheelB);
     m3_LinkRawFunction (module, arduino, "numPixels",        "i()",    &m3_arduino_numPixels);
     m3_LinkRawFunction (module, arduino, "Color",            "i(iii)", &m3_arduino_Color);
 
     return m3Err_none;
 }
-
+/*
 size_t readWasmFileSize(const char *path) {
   //Serial.printf("Reading file: %s\n", path);
 
@@ -265,6 +269,7 @@ size_t readWasmFile(const char *path, uint8_t *buf)
 
   return i;
 }
+*/
 
 void wasm_loop() {
    if(m3_init) {
@@ -306,7 +311,7 @@ void wasm_init() {
 #ifdef WASM_MEMORY_LIMIT
     m3_runtime->memoryLimit = WASM_MEMORY_LIMIT;
 #endif
-
+/*
     // load wasm from filesystem
     size_t app_wasm_len = readWasmFileSize("/app.wasm");
     if (app_wasm_len == 0)
@@ -317,7 +322,7 @@ void wasm_init() {
     size_t read_bytes = readWasmFile("/app.wasm", buf);
     if (read_bytes == 0)
       FATAL("ReadWasm", "File not found")
-/*
+
     // load wasm from rom (PROGMEM)
     //uint8_t buf[app_wasm_len];
     uint8_t * buf = new uint8_t[app_wasm_len];
@@ -329,13 +334,13 @@ void wasm_init() {
 
     Serial.print("Free After malloc: "); Serial.println(ESP.getFreeHeap(),DEC);
 
-    //result = m3_ParseModule (m3_env, &m3_module, app_wasm, app_wasm_len); // load wasm from header file
-    result = m3_ParseModule (m3_env, &m3_module, buf, app_wasm_len);
+    result = m3_ParseModule (m3_env, &m3_module, app_wasm, app_wasm_len); // load wasm from header file
+    //result = m3_ParseModule (m3_env, &m3_module, buf, app_wasm_len);
     if (result) FATAL("ParseModule", result);
 
     //delete[] buf;
     //delete buf;
-    free(buf);
+    //free(buf);
     
     Serial.print("Free After free: "); Serial.println(ESP.getFreeHeap(),DEC);
 
@@ -391,7 +396,7 @@ void setup() {
 #elif defined(ESP8266)
     Serial.printf("Max   block: %d\n", ESP.getMaxFreeBlockSize(),DEC); // largest contiguous free RAM block in the heap
 #endif
-    SPIFFS.begin();
+//    SPIFFS.begin();
     strip.updateLength(8);
     strip.setPin(4);
     strip.begin();

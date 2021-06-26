@@ -17,3 +17,4 @@ xxd -i app.wasm > app.wasm.h
 
 # Copy wasm file
 cp app.wasm ../../wasm_vm/data/app.wasm
+cp app.wasm.h ../../wasm_vm/app.wasm.h

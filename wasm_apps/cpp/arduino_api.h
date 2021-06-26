@@ -15,14 +15,14 @@ WASM_IMPORT("arduino", "delay")           void delay               (uint32_t ms)
 WASM_IMPORT("arduino", "print")           void print               (const char* s, size_t len);
 WASM_IMPORT("arduino", "show")            void show                (void);
 WASM_IMPORT("arduino", "clear")           void clear               (void);
-WASM_IMPORT("arduino", "setPixelColor")   void setPixelColor       (uint16_t n, uint8_t r, uint8_t g, uint8_t b);
-WASM_IMPORT("arduino", "setPixelColor32") void setPixelColor32     (uint16_t n, uint32_t c);
+//WASM_IMPORT("arduino", "setPixelColor")   void setPixelColor       (uint16_t n, uint8_t r, uint8_t g, uint8_t b);
+WASM_IMPORT("arduino", "setPixelColor")   void setPixelColor         (uint16_t n, uint32_t c);
 //WASM_IMPORT("arduino", "gamma32")         uint32_t gamma32         (uint32_t x);
 //WASM_IMPORT("arduino", "ColorHSV")        uint32_t ColorHSV        (uint16_t hue, uint8_t sat=255, uint8_t val=255);
-WASM_IMPORT("arduino", "Wheel")           uint32_t Wheel           (uint8_t Pos);
-WASM_IMPORT("arduino", "WheelR")          uint8_t WheelR           (uint8_t Pos);
-WASM_IMPORT("arduino", "WheelG")          uint8_t WheelG           (uint8_t Pos);
-WASM_IMPORT("arduino", "WheelB")          uint8_t WheelB           (uint8_t Pos);
+//WASM_IMPORT("arduino", "Wheel")           uint32_t Wheel           (uint8_t Pos);
+//WASM_IMPORT("arduino", "WheelR")          uint8_t WheelR           (uint8_t Pos);
+//WASM_IMPORT("arduino", "WheelG")          uint8_t WheelG           (uint8_t Pos);
+//WASM_IMPORT("arduino", "WheelB")          uint8_t WheelB           (uint8_t Pos);
 WASM_IMPORT("arduino", "numPixels")       uint16_t numPixels       (void);
 WASM_IMPORT("arduino", "Color")           uint32_t Color           (uint8_t r, uint8_t g, uint8_t b);
 
