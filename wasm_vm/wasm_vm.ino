@@ -69,7 +69,6 @@ m3ApiRawFunction(m3_arduino_millis) {
     m3ApiReturn(millis());
 }
 
-/*
 m3ApiRawFunction(m3_arduino_delay) {
     m3ApiGetArg     (uint32_t, ms)
 
@@ -77,8 +76,8 @@ m3ApiRawFunction(m3_arduino_delay) {
     delay(ms);
     m3ApiSuccess();
 }
-*/
 
+/*
 m3ApiRawFunction(m3_arduino_delay) { // hooked
   m3ApiGetArg   (uint32_t, milli)
 
@@ -91,6 +90,7 @@ m3ApiRawFunction(m3_arduino_delay) { // hooked
   }
   m3ApiSuccess();
 }
+*/
 
 m3ApiRawFunction(m3_arduino_print) {
     m3ApiGetArgMem  (const uint8_t *, buf)
@@ -403,5 +403,5 @@ void setup() {
 
 void loop() {
     wasm_loop();
-    yield(); // add code here
+    //yield(); // add code here
 }
