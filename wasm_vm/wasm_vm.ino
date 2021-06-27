@@ -271,7 +271,7 @@ size_t readWasmFile(const char *path, uint8_t *buf)
 }
 */
 
-void wasm_loop() {
+void vm_loop() {
    if(m3_init) {
       Serial.printf("Free   heap: %d\n", ESP.getFreeHeap());
 #ifdef ESP32
@@ -299,7 +299,7 @@ void wasm_loop() {
    }
 }
 
-void wasm_init() {
+void vm_init() {
     M3Result result = m3Err_none;
 
     m3_env = m3_NewEnvironment ();
@@ -323,9 +323,13 @@ void wasm_init() {
     if (read_bytes == 0)
       FATAL("ReadWasm", "File not found")
 
-    // load wasm from rom (PROGMEM)
+    // load wasm from rom (PROGMEM) edit app.wasm.h as follows
+	// const unsigned char app_wasm[] PROGMEM = {
+
     //uint8_t buf[app_wasm_len];
-    uint8_t * buf = new uint8_t[app_wasm_len];
+    //uint8_t * buf = new uint8_t[app_wasm_len];
+    byte* buf = (byte*) malloc(app_wasm_len);
+
     if (buf) {
       memcpy_P(buf, app_wasm, app_wasm_len);
       //Serial.write(buf, app_wasm_len); // dump the buffer.
@@ -402,11 +406,11 @@ void setup() {
     strip.begin();
     strip.show();
     strip.setBrightness(50);    
-    wasm_init();
+    vm_init();
     Serial.print("Free After init: "); Serial.println(ESP.getFreeHeap(),DEC);
 }
 
 void loop() {
-    wasm_loop();
+    vm_loop();
     //yield(); // add code here
 }

@@ -1,4 +1,64 @@
 Guru Meditation Error: Core  1 panic'ed (Unhandled debug exception)
+Debug exception reason: Stack canary watchpoint triggered (loopTask) 
+
+PC: 0x400d3ba4: ReadLebSigned at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_core.c line 381
+EXCVADDR: 0x00000000
+
+Decoding stack results
+0x400d3ba4: ReadLebSigned at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_core.c line 381
+0x400d3ca2: ReadLEB_i32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_core.c line 456
+0x400d2259: Compile_Const_i32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 1062
+0x400d3301: CompileBlockStatements at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 2496
+0x400d34d8: CompileBlock at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 2628
+0x400d36ba: Compile_If at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 1873
+0x400d3301: CompileBlockStatements at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 2496
+0x400d34d8: CompileBlock at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 2628
+0x400d3579: Compile_LoopOrBlock at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 1810
+0x400d3301: CompileBlockStatements at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 2496
+0x400d34d8: CompileBlock at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 2628
+0x400d3579: Compile_LoopOrBlock at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 1810
+0x400d3301: CompileBlockStatements at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 2496
+0x400d3951: CompileFunction at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src\m3_compile.c line 2790
+0x40087857: op_Compile at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 757
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x40087879: op_Compile at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 764
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x40087879: op_Compile at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 764
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x40087879: op_Compile at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 764
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x4008f36d: op_CopySlot_32 at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 952
+0x40087831: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 541
+
+
+Guru Meditation Error: Core  1 panic'ed (Unhandled debug exception)
 Debug exception reason: Stack canary watchpoint triggered (loopTask)
 
 PC: 0x400877fa: op_Call at C:\Users\Name\Documents\Arduino\libraries\Wasm3\src/m3_exec.h line 111
