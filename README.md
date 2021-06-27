@@ -127,5 +127,10 @@ but this does not work
 
 call from C: setup() call from C: loop() -> someFunction()
 ```
+That led to https://github.com/wasm3/wasm3/issues/28#issuecomment-569831125
+
+and then https://github.com/wasm3/wasm3/pull/74
+
+finally https://github.com/wasm3/wasm3/issues/241
 
 ## **my hopes for wasm3 seem to be dashed ... stay tuned**
