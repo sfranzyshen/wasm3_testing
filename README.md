@@ -111,4 +111,19 @@ My development envirnonmnet is as follows ...
 I'm using one of the [examples](https://github.com/wasm3/wasm3-arduino/tree/main/examples_pio/Wasm_Advanced) provided by the [wasm3-arduino](https://github.com/wasm3/wasm3-arduino) project. Each step I took to get to the final app are located in the folders starting with a number. The folder "0-orig" contains the original files ... and so on ... I choose to use the popular Adifruit_NeoPixel driver and strandtest_wheel.ino to merge into this code ... as a testing platform ...
 I started out using an esp8266 but wasn't able to get more than 2 of the patterns to run at the same time ... so I originally thought the problem was RAM related (maybe fragmenting) so I tried an esp32 ... and things did improve ... I was able to run more of the patterns at the same time ... but still not the whole program ... so then I thought "more RAM". I dug out a esp32 with 4MB psram ... and hacked [m3_core.c](https://github.com/wasm3/wasm3-arduino/blob/main/src/m3_core.c#L110) to use psram ... but still I couldn't run the whole program ... I also found the [Wasm_CoreMark](https://github.com/wasm3/wasm3-arduino/tree/main/examples/Wasm_CoreMark) sketch and it's 7769 byte wasm and realized ... my problem isn't memory ... so I tried to modify the code to be [different](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/app_other.cpp) but I end up with the same results ... I can get all of the code to run ... separately ... but not all together. I am fustrated and need help ;(
 
-**my hopes for wasm3 seem to be dashed ...**
+## Updates
+
+* The stack runs out. Why? 
+
+I found this [conversation](https://ask.csdn.net/questions/6422625) and this [repository](https://github.com/onionhammer/repro-wasm3) that appear to be relate to this situation ... It's not fully clear if the problem was overcome ... or just a workaround ... but the their fix seems to required the use of a duel core ESP32 to spawn a new task ... but this wouldn't be available to ESP32s2 or Esp8266 platforms ... So does this mean I'm out of luck? Why does Wasm3 use so much "Stack" when there is still plenty of heap available ...
+```
+So in other words, this works:
+
+call from C: setup() -> loop() -> someFunction()
+
+but this does not work
+
+call from C: setup() call from C: loop() -> someFunction()
+```
+
+## **my hopes for wasm3 seem to be dashed ...**
