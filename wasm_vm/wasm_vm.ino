@@ -73,7 +73,8 @@ m3ApiRawFunction(m3_arduino_millis) {
 
 m3ApiRawFunction(m3_arduino_delay) {
     m3ApiGetArg     (uint32_t, ms)
-
+    
+    //Serial.printf("stack HWM: %d\n", uxTaskGetStackHighWaterMark(NULL));
     //Serial.print("api: delay "); Serial.println(ms);
     delay(ms);
     m3ApiSuccess();
@@ -276,6 +277,7 @@ void vm_loop() {
       Serial.printf("Free   heap: %d\n", ESP.getFreeHeap());
 #ifdef ESP32
       Serial.printf("Max   block: %d\n", ESP.getMaxAllocHeap(),DEC); // largest block of heap that can be allocated at once
+      Serial.printf("stack HWM: %d\n", uxTaskGetStackHighWaterMark(NULL));
 #elif defined(ESP8266)
       Serial.printf("Max   block: %d\n", ESP.getMaxFreeBlockSize(),DEC); // largest contiguous free RAM block in the heap
 #endif
@@ -336,8 +338,8 @@ void vm_init() {
     }
 */
 
-    Serial.print("Free After malloc: "); Serial.println(ESP.getFreeHeap(),DEC);
-
+    //Serial.print("Free After malloc: "); Serial.println(ESP.getFreeHeap(),DEC);
+    //Serial.printf("stack HWM: %d\n", uxTaskGetStackHighWaterMark(NULL));
     result = m3_ParseModule (m3_env, &m3_module, app_wasm, app_wasm_len); // load wasm from header file
     //result = m3_ParseModule (m3_env, &m3_module, buf, app_wasm_len);
     if (result) FATAL("ParseModule", result);
@@ -346,13 +348,14 @@ void vm_init() {
     //delete buf;
     //free(buf);
     
-    Serial.print("Free After free: "); Serial.println(ESP.getFreeHeap(),DEC);
+    //Serial.print("Free After free: "); Serial.println(ESP.getFreeHeap(),DEC);
 
     result = m3_LoadModule (m3_runtime, m3_module);
     if (result) FATAL("LoadModule", result);
 
-    Serial.print("Free After LoadModule: "); Serial.println(ESP.getFreeHeap(),DEC);
-
+    //Serial.print("Free After LoadModule: "); Serial.println(ESP.getFreeHeap(),DEC);
+    //Serial.printf("stack HWM: %d\n", uxTaskGetStackHighWaterMark(NULL));
+    
     result = LinkArduino (m3_runtime);
     if (result) FATAL("LinkArduino", result);
 
@@ -393,6 +396,7 @@ void setup() {
     Serial.printf("Free   heap: %d\n", ESP.getFreeHeap());
 #ifdef ESP32
     Serial.printf("Max   block: %d\n", ESP.getMaxAllocHeap(),DEC); // largest block of heap that can be allocated at once
+    Serial.printf("stack HWM: %d\n", uxTaskGetStackHighWaterMark(NULL));
     if(psramFound()) {
       Serial.printf("Total PSRAM: %d\n", ESP.getPsramSize());
       Serial.printf("Free  PSRAM: %d\n", ESP.getFreePsram());
@@ -408,9 +412,13 @@ void setup() {
     strip.setBrightness(50);    
     vm_init();
     Serial.print("Free After init: "); Serial.println(ESP.getFreeHeap(),DEC);
+#ifdef ESP32
+    Serial.printf("stack HWM: %d\n", uxTaskGetStackHighWaterMark(NULL));
+#endif
 }
 
 void loop() {
-    vm_loop();
+    //vm_loop();
+    delay(100);
     //yield(); // add code here
 }
