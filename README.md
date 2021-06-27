@@ -2,8 +2,7 @@
 
 I'm having a hell of a time trying to get wasm3 working on the Arduino esp8266/esp32 platforms ... this repository is a collection of the code I used for testing and the notes on my results ... any help in getting this working would be greatly appreciated ...
 # TLDR #
-I am able to compile and run all of the code used here ... separately ... but I am not able to run all of the code combined together. If I comment out some of the code in the app source code, it will work ... and if I undo the commented code and comment out some different code, it will also work ... but if I undo all commented out code ... it fails ... what am I doing wrong? 
-
+I am able to compile and run all of the code used here ... separately ... but I am not able to run all of the code combined together. If I comment out some of the code in the app source code, it will work ... and if I undo the commented code and comment out some different code, it will also work ... but if I undo all commented out code ... it fails ... from what I can tell ... the stack runs out 
 ## Example #1 (Fails)
 * [ino source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_vm/wasm_vm.ino), 
 * [app cpp source](https://github.com/sfranzyshen/wasm3_testing/blob/main/wasm_apps/cpp/example_1/app.cpp), 
