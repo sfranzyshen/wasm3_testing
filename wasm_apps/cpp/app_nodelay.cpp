@@ -10,23 +10,6 @@ int           pixelCycle = 0;                  // Pixel Cycle
 uint16_t      pixelCurrent = 0;                // Current Pixel Number
 uint16_t      pixelNumber = numPixels(); // Number of Pixels
 
-/*
-// Input a value 0 to 255 to get a color value.
-// The colours are a transition r - g - b - back to r.
-uint32_t Wheel(int WheelPos) {
-  WheelPos = 255 - WheelPos;
-  if(WheelPos < 85) {
-    return Color(255 - WheelPos * 3, 0, WheelPos * 3);
-  }
-  if(WheelPos < 170) {
-    WheelPos -= 85;
-    return Color(0, WheelPos * 3, 255 - WheelPos * 3);
-  }
-  WheelPos -= 170;
-  return Color(WheelPos * 3, 255 - WheelPos * 3, 0);
-}
-*/
-
 // colorWipe()
 void colorWipe(uint8_t r, uint8_t g, uint8_t b, uint8_t wait) {
   if(pixelInterval != wait) pixelInterval = wait;
@@ -38,7 +21,6 @@ void colorWipe(uint8_t r, uint8_t g, uint8_t b, uint8_t wait) {
     clear();
   }
 }
-
 
 // rainbow()
 void rainbow(uint8_t wait) {
@@ -121,6 +103,15 @@ void loop() {
   if((currentMillis - patternPrevious) >= patternInterval) {
     patternPrevious = currentMillis ;
     patternCurrent++;
+    if(patternCurrent == 8) println("theaterChaseRainbow");
+    else if(patternCurrent == 7) println("rainbowCycle");
+    else if(patternCurrent == 6) println("rainbow");
+    else if(patternCurrent == 5) println("theaterChase Blue");  // Blue
+    else if(patternCurrent == 4) println("theaterChase Red");   // Red
+    else if(patternCurrent == 3) println("theaterChase White"); // White
+    else if(patternCurrent == 2) println("colorWipe Blue");     // Blue
+    else if(patternCurrent == 1) println("colorWipe Green");    // Green
+    else if(patternCurrent == 0) println("colorWipe Red");      // Red	
     if(patternCurrent >= 8) {
       patternCurrent = 0;
       println("strandtest_nodelay ... loop");
