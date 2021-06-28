@@ -39,6 +39,7 @@ void colorWipe(uint8_t r, uint8_t g, uint8_t b, uint8_t wait) {
   }
 }
 
+
 // rainbow()
 void rainbow(uint8_t wait) {
   if(pixelInterval != wait) pixelInterval = wait;
@@ -120,15 +121,6 @@ void loop() {
   if((currentMillis - patternPrevious) >= patternInterval) {
     patternPrevious = currentMillis ;
     patternCurrent++;
-    if(patternCurrent == 8) println("theaterChaseRainbow");
-    else if(patternCurrent == 7) println("rainbowCycle");
-    else if(patternCurrent == 6) println("rainbow");
-    else if(patternCurrent == 5) println("theaterChase Blue");  // Blue
-    else if(patternCurrent == 4) println("theaterChase Red");   // Red
-    else if(patternCurrent == 3) println("theaterChase White"); // White
-    else if(patternCurrent == 2) println("colorWipe Blue");     // Blue
-    else if(patternCurrent == 1) println("colorWipe Green");    // Green
-    else if(patternCurrent == 0) println("colorWipe Red");      // Red	
     if(patternCurrent >= 8) {
       patternCurrent = 0;
       println("strandtest_nodelay ... loop");

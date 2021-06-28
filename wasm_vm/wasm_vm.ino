@@ -50,6 +50,7 @@ uint8_t WheelB(uint8_t Pos) {
   if(Pos < 170) { Pos -= 85; return 255 - Pos * 3; }
   return 0;
 }
+*/
 
 uint32_t Wheel(uint8_t Pos) {
   Pos = 255 - Pos;
@@ -63,7 +64,7 @@ uint32_t Wheel(uint8_t Pos) {
   Pos -= 170;
   return strip.Color(Pos * 3, 255 - Pos * 3, 0);
 }
-*/
+
 
 m3ApiRawFunction(m3_arduino_millis) {
     m3ApiReturnType (uint32_t)
@@ -168,7 +169,7 @@ m3ApiRawFunction(m3_arduino_Color) {
   
     m3ApiReturn(strip.Color(r, g, b));
 }
-/*
+
 m3ApiRawFunction(m3_arduino_Wheel) {
     m3ApiReturnType (uint32_t)
     m3ApiGetArg     (uint8_t, pos)
@@ -176,6 +177,7 @@ m3ApiRawFunction(m3_arduino_Wheel) {
     m3ApiReturn(Wheel(pos));
 }
 
+/*
 m3ApiRawFunction(m3_arduino_WheelR) {
     m3ApiReturnType (uint8_t)
     m3ApiGetArg     (uint8_t, pos)
@@ -211,7 +213,7 @@ M3Result  LinkArduino  (IM3Runtime runtime) {
     m3_LinkRawFunction (module, arduino, "setPixelColor",  "v(ii)",  &m3_arduino_setPixelColor);
     //m3_LinkRawFunction (module, arduino, "gamma32",          "i(i)",   &m3_arduino_gamma32);
     //m3_LinkRawFunction (module, arduino, "ColorHSV",         "i(iii)", &m3_arduino_ColorHSV);
-//    m3_LinkRawFunction (module, arduino, "Wheel",            "i(i)",   &m3_arduino_Wheel);
+    m3_LinkRawFunction (module, arduino, "Wheel",            "i(i)",   &m3_arduino_Wheel);
 //    m3_LinkRawFunction (module, arduino, "WheelR",           "i(i)",   &m3_arduino_WheelR);
 //    m3_LinkRawFunction (module, arduino, "WheelG",           "i(i)",   &m3_arduino_WheelG);
 //    m3_LinkRawFunction (module, arduino, "WheelB",           "i(i)",   &m3_arduino_WheelB);
@@ -274,12 +276,12 @@ size_t readWasmFile(const char *path, uint8_t *buf)
 
 void vm_loop() {
    if(m3_init) {
-      Serial.printf("Free   heap: %d\n", ESP.getFreeHeap());
+      //Serial.printf("Free   heap: %d\n", ESP.getFreeHeap());
 #ifdef ESP32
-      Serial.printf("Max   block: %d\n", ESP.getMaxAllocHeap(),DEC); // largest block of heap that can be allocated at once
-      Serial.printf("stack HWM: %d\n", uxTaskGetStackHighWaterMark(NULL));
+      //Serial.printf("Max   block: %d\n", ESP.getMaxAllocHeap(),DEC); // largest block of heap that can be allocated at once
+      //Serial.printf("stack HWM: %d\n", uxTaskGetStackHighWaterMark(NULL));
 #elif defined(ESP8266)
-      Serial.printf("Max   block: %d\n", ESP.getMaxFreeBlockSize(),DEC); // largest contiguous free RAM block in the heap
+      //Serial.printf("Max   block: %d\n", ESP.getMaxFreeBlockSize(),DEC); // largest contiguous free RAM block in the heap
 #endif
       M3Result result = m3_CallV (m3_loop);
       if (result) {
@@ -418,7 +420,7 @@ void setup() {
 }
 
 void loop() {
-    //vm_loop();
-    delay(100);
+    vm_loop();
+    //delay(100);
     //yield(); // add code here
 }

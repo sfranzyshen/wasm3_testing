@@ -3,6 +3,7 @@ delay
 print
 show
 clear
+Wheel
 setPixelColor
 numPixels
 Color
