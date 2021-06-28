@@ -5,7 +5,7 @@ After reading the following statment in this [document](https://github.com/wasm3
 
 ```Returning from a Wasm function also unwinds the stack, back to the point of the Call operation.```
 
-the work around is to write the code inside the wasm app to be non blocking ... allowing the execution flow to return to the arduino host, resetting the stack used ... **bingo!** 
+the work around is to write the code inside the wasm app to be non blocking ... allowing the execution flow to return back to the arduino host, resetting the stack used ... **bingo!** 
 
 ## Previous (Ramblings ...)
 I'm having a hell of a time trying to get wasm3 working on the Arduino esp8266/esp32 platforms ... this repository is a collection of the code I used for testing and the notes on my results ... any help in getting this working would be greatly appreciated ...
