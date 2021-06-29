@@ -63,16 +63,16 @@ void theaterChase(uint32_t c, uint8_t wait) {
 
 // setup()
 void setup() {
-	println("\nstrandtest ... start");
+    println("\nstrandtest ... start");
 }
 
 // loop()
 void loop() {
     patternCurrent++;
 
-	// Some example procedures showing how to display to the pixels:
+    // Some example procedures showing how to display to the pixels:
 
-	if(patternCurrent == 8) { println("theaterChaseRainbow"); theaterChaseRainbow(50); }
+    if(patternCurrent == 8) { println("theaterChaseRainbow"); theaterChaseRainbow(50); }
     else if(patternCurrent == 7) { println("rainbow"); rainbow(20); }
     else if(patternCurrent == 6) { println("theaterChase Blue"); theaterChase(Color(0, 0, 127), 50); }      // Blue
     else if(patternCurrent == 5) { println("theaterChase Red"); theaterChase(Color(127, 0, 0), 50); }       // Red
@@ -81,7 +81,7 @@ void loop() {
     else if(patternCurrent == 2) { println("colorWipe Green"); colorWipe(Color(0, 255, 0), 50); }           // Green
     else if(patternCurrent == 1) { println("colorWipe Red"); colorWipe(Color(255, 0, 0), 50); }             // Red
     if(patternCurrent >= 8) {
-      patternCurrent = 0;
-	  println("strandtest ... loop");
+    	patternCurrent = 0;
+	println("strandtest ... loop");
     }
 }
