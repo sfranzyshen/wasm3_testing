@@ -10,7 +10,7 @@ the work around for wasm3 issue [#241](https://github.com/wasm3/wasm3/issues/241
 ### Usage
 You will need to have installed ...
 * Arduino IDE
-* ESP Core(s)
+* ESP Core(s) (esp32 and esp8266 are supported)
 * Wasm3 Arduino Library
 * Adifruit_NeoPixel Library
 * Wasienv Toolchain 
