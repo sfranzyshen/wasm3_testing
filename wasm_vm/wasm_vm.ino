@@ -8,6 +8,7 @@
 
 #define LED_PIN   18
 #define LED_COUNT 10
+#define LED_BRIGHT 50
 
 //#define WASM_FILE "/app_nodelay.wasm" 
 #define WASM_FILE "/app_delay.wasm" 
@@ -296,11 +297,11 @@ void setup() {
     Serial.begin(115200);
     Serial.println("\nWasm3 v" M3_VERSION " (" M3_ARCH "), build " __DATE__ " " __TIME__);
     SPIFFS.begin();
-    strip.updateLength(8);
-    strip.setPin(4);
+    strip.updateLength(LED_COUNT);
+    strip.setPin(LED_PIN);
     strip.begin();
     strip.show();
-    strip.setBrightness(50);    
+    strip.setBrightness(LED_BRIGHT);    
     vm_init();
 }
 
