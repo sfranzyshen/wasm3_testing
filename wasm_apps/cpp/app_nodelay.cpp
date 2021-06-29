@@ -103,30 +103,30 @@ void loop() {
   if((currentMillis - patternPrevious) >= patternInterval) {
     patternPrevious = currentMillis ;
     patternCurrent++;
-    if(patternCurrent == 8) println("theaterChaseRainbow");
-    else if(patternCurrent == 7) println("rainbowCycle");
-    else if(patternCurrent == 6) println("rainbow");
-    else if(patternCurrent == 5) println("theaterChase Blue");  // Blue
-    else if(patternCurrent == 4) println("theaterChase Red");   // Red
-    else if(patternCurrent == 3) println("theaterChase White"); // White
-    else if(patternCurrent == 2) println("colorWipe Blue");     // Blue
-    else if(patternCurrent == 1) println("colorWipe Green");    // Green
-    else if(patternCurrent == 0) println("colorWipe Red");      // Red	
-    if(patternCurrent >= 8) {
+    if(patternCurrent == 9) println("theaterChaseRainbow");
+    else if(patternCurrent == 8) println("rainbowCycle");
+    else if(patternCurrent == 7) println("rainbow");
+    else if(patternCurrent == 6) println("theaterChase Blue");  // Blue
+    else if(patternCurrent == 5) println("theaterChase Red");   // Red
+    else if(patternCurrent == 4) println("theaterChase White"); // White
+    else if(patternCurrent == 3) println("colorWipe Blue");     // Blue
+    else if(patternCurrent == 2) println("colorWipe Green");    // Green
+    else if(patternCurrent == 1) println("colorWipe Red");      // Red	
+    if(patternCurrent >= 9) {
       patternCurrent = 0;
       println("strandtest_nodelay ... loop");
     }
   }  
   if(currentMillis - pixelPrevious >= pixelInterval) {
     pixelPrevious = currentMillis;
-    if(patternCurrent == 8) theaterChaseRainbow(50);
-    else if(patternCurrent == 7) rainbowCycle(20);
-    else if(patternCurrent == 6) rainbow(20);
-    else if(patternCurrent == 5) theaterChase(0, 0, 127, 50);     // Blue
-    else if(patternCurrent == 4) theaterChase(127, 0, 0, 50);     // Red
-    else if(patternCurrent == 3) theaterChase(127, 127, 127, 50); // White
-    else if(patternCurrent == 2) colorWipe(0, 0, 255, 50);        // Blue
-    else if(patternCurrent == 1) colorWipe(0, 255, 0, 50);        // Green
-    else if(patternCurrent == 0) colorWipe(255, 0, 0, 50);        // Red
+    if(patternCurrent == 9) theaterChaseRainbow(50);
+    else if(patternCurrent == 8) rainbowCycle(20);
+    else if(patternCurrent == 7) rainbow(20);
+    else if(patternCurrent == 6) theaterChase(0, 0, 127, 50);     // Blue
+    else if(patternCurrent == 5) theaterChase(127, 0, 0, 50);     // Red
+    else if(patternCurrent == 4) theaterChase(127, 127, 127, 50); // White
+    else if(patternCurrent == 3) colorWipe(0, 0, 255, 50);        // Blue
+    else if(patternCurrent == 2) colorWipe(0, 255, 0, 50);        // Green
+    else if(patternCurrent == 1) colorWipe(255, 0, 0, 50);        // Red
   }    
 }

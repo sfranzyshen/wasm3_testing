@@ -1,19 +1,7 @@
 #include "arduino_api.h"
 
-// Input a value 0 to 255 to get a color value.
-// The colours are a transition r - g - b - back to r.
-uint32_t Wheel(int WheelPos) {
-  WheelPos = 255 - WheelPos;
-  if(WheelPos < 85) {
-    return Color(255 - WheelPos * 3, 0, WheelPos * 3);
-  }
-  if(WheelPos < 170) {
-    WheelPos -= 85;
-    return Color(0, WheelPos * 3, 255 - WheelPos * 3);
-  }
-  WheelPos -= 170;
-  return Color(WheelPos * 3, 255 - WheelPos * 3, 0);
-}
+int patternCurrent = 0;              // Current Pattern Number
+
 
 //Theatre-style crawling lights with rainbow effect
 void theaterChaseRainbow(uint8_t wait) {
@@ -80,24 +68,20 @@ void setup() {
 
 // loop()
 void loop() {
-  // Some example procedures showing how to display to the pixels:
+    patternCurrent++;
 
-  println("rainbow ... ");
-  rainbow(20);
-  println("theaterChaseRainbow ... ");
-  theaterChaseRainbow(20);
-  
-  println("colorWipe ... ");
-  colorWipe(Color(255, 0, 0), 50); // Red
-  colorWipe(Color(0, 255, 0), 50); // Green
-  colorWipe(Color(0, 0, 255), 50); // Blue
+	// Some example procedures showing how to display to the pixels:
 
-  // Send a theater pixel chase in...
-  println("theaterChase ... ");
-  theaterChase(Color(127, 127, 127), 50); // White
-  theaterChase(Color(127, 0, 0), 50); // Red
-  theaterChase(Color(0, 0, 127), 50); // Blue
-
-  println("strandtest ... loop");
-  
+	if(patternCurrent == 8) { println("theaterChaseRainbow"); theaterChaseRainbow(50); }
+    else if(patternCurrent == 7) { println("rainbow"); rainbow(20); }
+    else if(patternCurrent == 6) { println("theaterChase Blue"); theaterChase(Color(0, 0, 127), 50); }      // Blue
+    else if(patternCurrent == 5) { println("theaterChase Red"); theaterChase(Color(127, 0, 0), 50); }       // Red
+    else if(patternCurrent == 4) { println("theaterChase White"); theaterChase(Color(127, 127, 127), 50); } // White
+    else if(patternCurrent == 3) { println("colorWipe Blue"); colorWipe(Color(0, 0, 255), 50); }            // Blue
+    else if(patternCurrent == 2) { println("colorWipe Green"); colorWipe(Color(0, 255, 0), 50); }           // Green
+    else if(patternCurrent == 1) { println("colorWipe Red"); colorWipe(Color(255, 0, 0), 50); }             // Red
+    if(patternCurrent >= 8) {
+      patternCurrent = 0;
+	  println("strandtest ... loop");
+    }
 }

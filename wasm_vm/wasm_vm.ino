@@ -1,14 +1,16 @@
 #include <wasm3.h>
 #include <m3_env.h>
-#include "app.wasm.h"
-//#include <FS.h>
+#include <FS.h>
 #ifdef ESP32
-//#include <SPIFFS.h>
+#include <SPIFFS.h>
 #endif
 #include <Adafruit_NeoPixel.h>
 
 #define LED_PIN   18
 #define LED_COUNT 10
+
+//#define WASM_FILE "/app_nodelay.wasm" 
+#define WASM_FILE "/app_delay.wasm" 
 
 #define FATAL(func, msg) { Serial.print("Fatal: " func " "); Serial.println(msg); return; }
 
@@ -27,31 +29,6 @@ IM3Function     m3_setup;
 IM3Function     m3_loop;
 bool            m3_init = false;
 
-/*
-uint8_t WheelR(uint8_t Pos) {
-  Pos = 255 - Pos;
-  if(Pos < 85) { return 255 - Pos * 3; }
-  if(Pos < 170) { return 0; }
-  Pos -= 170;
-  return Pos * 3;
-}
-
-uint8_t WheelG(uint8_t Pos) {
-  Pos = 255 - Pos;
-  if(Pos < 85) { return 0; }
-  if(Pos < 170) { Pos -= 85; return Pos * 3; }
-  Pos -= 170;
-  return 255 - Pos * 3;
-}
-
-uint8_t WheelB(uint8_t Pos) {
-  Pos = 255 - Pos;
-  if(Pos < 85) { return Pos * 3; }
-  if(Pos < 170) { Pos -= 85; return 255 - Pos * 3; }
-  return 0;
-}
-*/
-
 uint32_t Wheel(uint8_t Pos) {
   Pos = 255 - Pos;
   if(Pos < 85) {
@@ -65,7 +42,6 @@ uint32_t Wheel(uint8_t Pos) {
   return strip.Color(Pos * 3, 255 - Pos * 3, 0);
 }
 
-
 m3ApiRawFunction(m3_arduino_millis) {
     m3ApiReturnType (uint32_t)
 
@@ -75,8 +51,6 @@ m3ApiRawFunction(m3_arduino_millis) {
 m3ApiRawFunction(m3_arduino_delay) {
     m3ApiGetArg     (uint32_t, ms)
     
-    //Serial.printf("stack HWM: %d\n", uxTaskGetStackHighWaterMark(NULL));
-    //Serial.print("api: delay "); Serial.println(ms);
     delay(ms);
     m3ApiSuccess();
 }
@@ -100,7 +74,6 @@ m3ApiRawFunction(m3_arduino_print) {
     m3ApiGetArgMem  (const uint8_t *, buf)
     m3ApiGetArg     (uint8_t,        len)
 
-    //printf("api: print %p %d\n", buf, len);
     Serial.write(buf, len);
     m3ApiSuccess();
 }
@@ -139,18 +112,6 @@ m3ApiRawFunction(m3_arduino_ColorHSV) {
     m3ApiReturn(strip.ColorHSV(hue, sat, val));
 }
 */
-/*
-m3ApiRawFunction(m3_arduino_setPixelColor) {
-  m3ApiGetArg     (uint16_t, n)
-  m3ApiGetArg     (uint8_t, r)
-  m3ApiGetArg     (uint8_t, g)
-  m3ApiGetArg     (uint8_t, b)
-
-  strip.setPixelColor(n, r, g, b);
-
-  m3ApiSuccess();
-}
-*/
 
 m3ApiRawFunction(m3_arduino_setPixelColor) {
   m3ApiGetArg     (uint16_t, n)
@@ -177,29 +138,6 @@ m3ApiRawFunction(m3_arduino_Wheel) {
     m3ApiReturn(Wheel(pos));
 }
 
-/*
-m3ApiRawFunction(m3_arduino_WheelR) {
-    m3ApiReturnType (uint8_t)
-    m3ApiGetArg     (uint8_t, pos)
-  
-    m3ApiReturn(WheelR(pos));
-}
-
-m3ApiRawFunction(m3_arduino_WheelG) {
-    m3ApiReturnType (uint8_t)
-    m3ApiGetArg     (uint8_t, pos)
-  
-    m3ApiReturn(WheelR(pos));
-}
-
-m3ApiRawFunction(m3_arduino_WheelB) {
-    m3ApiReturnType (uint8_t)
-    m3ApiGetArg     (uint8_t, pos)
-  
-    m3ApiReturn(WheelR(pos));
-}
-*/
-
 M3Result  LinkArduino  (IM3Runtime runtime) {
     IM3Module module = runtime->modules;
     const char* arduino = "arduino";
@@ -209,20 +147,16 @@ M3Result  LinkArduino  (IM3Runtime runtime) {
     m3_LinkRawFunction (module, arduino, "print",            "v(*i)",  &m3_arduino_print);
     m3_LinkRawFunction (module, arduino, "show",             "v()",    &m3_arduino_show);
     m3_LinkRawFunction (module, arduino, "clear",            "v()",    &m3_arduino_clear);
-//    m3_LinkRawFunction (module, arduino, "setPixelColor",    "v(iiii)",&m3_arduino_setPixelColor);
-    m3_LinkRawFunction (module, arduino, "setPixelColor",  "v(ii)",  &m3_arduino_setPixelColor);
+    m3_LinkRawFunction (module, arduino, "setPixelColor",    "v(ii)",  &m3_arduino_setPixelColor);
     //m3_LinkRawFunction (module, arduino, "gamma32",          "i(i)",   &m3_arduino_gamma32);
     //m3_LinkRawFunction (module, arduino, "ColorHSV",         "i(iii)", &m3_arduino_ColorHSV);
     m3_LinkRawFunction (module, arduino, "Wheel",            "i(i)",   &m3_arduino_Wheel);
-//    m3_LinkRawFunction (module, arduino, "WheelR",           "i(i)",   &m3_arduino_WheelR);
-//    m3_LinkRawFunction (module, arduino, "WheelG",           "i(i)",   &m3_arduino_WheelG);
-//    m3_LinkRawFunction (module, arduino, "WheelB",           "i(i)",   &m3_arduino_WheelB);
     m3_LinkRawFunction (module, arduino, "numPixels",        "i()",    &m3_arduino_numPixels);
     m3_LinkRawFunction (module, arduino, "Color",            "i(iii)", &m3_arduino_Color);
 
     return m3Err_none;
 }
-/*
+
 size_t readWasmFileSize(const char *path) {
   //Serial.printf("Reading file: %s\n", path);
 
@@ -272,17 +206,9 @@ size_t readWasmFile(const char *path, uint8_t *buf)
 
   return i;
 }
-*/
 
 void vm_loop() {
    if(m3_init) {
-      //Serial.printf("Free   heap: %d\n", ESP.getFreeHeap());
-#ifdef ESP32
-      //Serial.printf("Max   block: %d\n", ESP.getMaxAllocHeap(),DEC); // largest block of heap that can be allocated at once
-      //Serial.printf("stack HWM: %d\n", uxTaskGetStackHighWaterMark(NULL));
-#elif defined(ESP8266)
-      //Serial.printf("Max   block: %d\n", ESP.getMaxFreeBlockSize(),DEC); // largest contiguous free RAM block in the heap
-#endif
       M3Result result = m3_CallV (m3_loop);
       if (result) {
           m3_init = false;
@@ -315,49 +241,24 @@ void vm_init() {
 #ifdef WASM_MEMORY_LIMIT
     m3_runtime->memoryLimit = WASM_MEMORY_LIMIT;
 #endif
-/*
+
     // load wasm from filesystem
-    size_t app_wasm_len = readWasmFileSize("/app.wasm");
+    size_t app_wasm_len = readWasmFileSize(WASM_FILE);
     if (app_wasm_len == 0)
       FATAL("ReadWasm", "File not found")
 
-    //uint8_t * buf = new uint8_t[app_wasm_len];
-    byte* buf = (byte*) malloc(app_wasm_len);
-    size_t read_bytes = readWasmFile("/app.wasm", buf);
+    uint8_t* app_wasm = (uint8_t*) malloc(app_wasm_len);
+
+    size_t read_bytes = readWasmFile(WASM_FILE, app_wasm);
     if (read_bytes == 0)
       FATAL("ReadWasm", "File not found")
 
-    // load wasm from rom (PROGMEM) edit app.wasm.h as follows
-	// const unsigned char app_wasm[] PROGMEM = {
-
-    //uint8_t buf[app_wasm_len];
-    //uint8_t * buf = new uint8_t[app_wasm_len];
-    byte* buf = (byte*) malloc(app_wasm_len);
-
-    if (buf) {
-      memcpy_P(buf, app_wasm, app_wasm_len);
-      //Serial.write(buf, app_wasm_len); // dump the buffer.
-    }
-*/
-
-    //Serial.print("Free After malloc: "); Serial.println(ESP.getFreeHeap(),DEC);
-    //Serial.printf("stack HWM: %d\n", uxTaskGetStackHighWaterMark(NULL));
-    result = m3_ParseModule (m3_env, &m3_module, app_wasm, app_wasm_len); // load wasm from header file
-    //result = m3_ParseModule (m3_env, &m3_module, buf, app_wasm_len);
+    result = m3_ParseModule (m3_env, &m3_module, app_wasm, app_wasm_len);
     if (result) FATAL("ParseModule", result);
-
-    //delete[] buf;
-    //delete buf;
-    //free(buf);
-    
-    //Serial.print("Free After free: "); Serial.println(ESP.getFreeHeap(),DEC);
 
     result = m3_LoadModule (m3_runtime, m3_module);
     if (result) FATAL("LoadModule", result);
 
-    //Serial.print("Free After LoadModule: "); Serial.println(ESP.getFreeHeap(),DEC);
-    //Serial.printf("stack HWM: %d\n", uxTaskGetStackHighWaterMark(NULL));
-    
     result = LinkArduino (m3_runtime);
     if (result) FATAL("LinkArduino", result);
 
@@ -394,35 +295,16 @@ void vm_init() {
 void setup() {
     Serial.begin(115200);
     Serial.println("\nWasm3 v" M3_VERSION " (" M3_ARCH "), build " __DATE__ " " __TIME__);
-#ifdef ESP32    
-    Serial.printf("Total  heap: %d\n", ESP.getHeapSize());
-#endif
-    Serial.printf("Free   heap: %d\n", ESP.getFreeHeap());
-#ifdef ESP32
-    Serial.printf("Max   block: %d\n", ESP.getMaxAllocHeap(),DEC); // largest block of heap that can be allocated at once
-    Serial.printf("stack HWM: %d\n", uxTaskGetStackHighWaterMark(NULL));
-    if(psramFound()) {
-      Serial.printf("Total PSRAM: %d\n", ESP.getPsramSize());
-      Serial.printf("Free  PSRAM: %d\n", ESP.getFreePsram());
-    }
-#elif defined(ESP8266)
-    Serial.printf("Max   block: %d\n", ESP.getMaxFreeBlockSize(),DEC); // largest contiguous free RAM block in the heap
-#endif
-//    SPIFFS.begin();
+    SPIFFS.begin();
     strip.updateLength(8);
     strip.setPin(4);
     strip.begin();
     strip.show();
     strip.setBrightness(50);    
     vm_init();
-    Serial.print("Free After init: "); Serial.println(ESP.getFreeHeap(),DEC);
-#ifdef ESP32
-    Serial.printf("stack HWM: %d\n", uxTaskGetStackHighWaterMark(NULL));
-#endif
 }
 
 void loop() {
     vm_loop();
-    //delay(100);
     //yield(); // add code here
 }
