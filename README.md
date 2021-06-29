@@ -5,6 +5,6 @@ After reading the following statment in this [document](https://github.com/wasm3
 
 ```Returning from a Wasm function also unwinds the stack, back to the point of the Call operation.```
 
-the work around is to write the code inside the wasm app to be non blocking ... allowing the execution flow to return back to the arduino host, resetting the stack used ... **bingo!** 
+the work around for wasm3 issue [#241](https://github.com/wasm3/wasm3/issues/241) is to write the code inside the wasm app to be non blocking ... allowing the execution flow to return back to the arduino host, resetting the stack used ... **bingo!** 
 
 ### more to follow soon
