@@ -10,8 +10,8 @@
 #define LED_COUNT 10
 #define LED_BRIGHT 50
 
-//#define WASM_FILE "/app_nodelay.wasm" 
-#define WASM_FILE "/app_delay.wasm" 
+#define WASM_FILE "/app_nodelay.wasm" 
+//#define WASM_FILE "/app_delay.wasm" 
 
 #define FATAL(func, msg) { Serial.print("Fatal: " func " "); Serial.println(msg); return; }
 
