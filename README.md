@@ -7,4 +7,18 @@ After reading the following statment in this [document](https://github.com/wasm3
 
 the work around for wasm3 issue [#241](https://github.com/wasm3/wasm3/issues/241) is to write the code inside the wasm app to be non blocking ... allowing the execution flow to return back to the arduino host, resetting the stack used ... **bingo!** 
 
-### more to come soon
+### Usage
+You will need to have installed ...
+* Arduino IDE
+* ESP Core(s)
+* Wasm3 Arduino Library
+* Adifruit_NeoPixel Library
+* Wasienv Toolchain 
+* Download or clone this repository
+
+Change to the wasm_apps/cpp/ folder and run the ./build.sh script file. This will generate and copy the wasm files to the wasm_vm/data/ folder. Open the wasm_vm/wasm_vm.ino file with the Arduino IDE. Compile and upload the sketch to your device ... and perform a data upload to your device's filesystem ... reboot, you will be running a wasm sketch, loaded from the filesystem.
+
+### Notes
+The `define WASM_FILE`can be either "/app_delay.wasm" or "/app_nodelay.wasm" (or any wasm file you create)
+
+The `#define LED_PIN` and `#define LED_COUNT` are used to set the led strip
