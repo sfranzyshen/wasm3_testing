@@ -1,13 +1,13 @@
 #include "arduino_api.h"
 
-unsigned long patternPrevious = 0;             // Previous Pattern Millis
-int           patternCurrent = 0;              // Current Pattern Number
-int           patternInterval = 5500;          // Pattern Interval (ms)
-unsigned long pixelPrevious = 0;               // Previous Pixel Millis
-uint8_t       pixelInterval = 50;              // Pixel Interval (ms)
-int           pixelQueue = 0;                  // Pixel Queue
-int           pixelCycle = 0;                  // Pixel Cycle
-uint16_t      pixelCurrent = 0;                // Current Pixel Number
+unsigned long patternPrevious = 0;       // Previous Pattern Millis
+int           patternCurrent = 0;        // Current Pattern Number
+int           patternInterval = 5500;    // Pattern Interval (ms)
+unsigned long pixelPrevious = 0;         // Previous Pixel Millis
+uint8_t       pixelInterval = 50;        // Pixel Interval (ms)
+int           pixelQueue = 0;            // Pixel Queue
+int           pixelCycle = 0;            // Pixel Cycle
+uint16_t      pixelCurrent = 0;          // Current Pixel Number
 uint16_t      pixelNumber = numPixels(); // Number of Pixels
 
 // colorWipe()
