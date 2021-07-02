@@ -28,7 +28,6 @@ self.addEventListener('install', event => {
         './',
         './index.html',
         './index.css',
-        './memfs.wasm',
         './shared.js',
         './index.js',
         './worker.js',

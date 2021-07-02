@@ -705,7 +705,7 @@ class API {
 
   async getModule(name) {
     if (this.moduleCache[name]) return this.moduleCache[name];
-    const module = await this.hostLogAsync(`Fetching ${name}`,
+    const module = await this.hostLogAsync(`Fetching module`,
                                            this.compileStreaming(name));
     this.moduleCache[name] = module;
     return module;
@@ -717,7 +717,7 @@ class API {
       const tar = new Tar(await this.readBuffer(filename));
       tar.untar(this.memfs);
     })();
-    await this.hostLogAsync(`Untarring ${filename}`, promise);
+    await this.hostLogAsync(`Untarring archive`, promise);
   }
 
   async compile(options) {
