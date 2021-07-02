@@ -1,5 +1,5 @@
 # Wasm3 Testing #
-
+This repository contains a test of using wasm3 webassembly virtual machine with the esp microcontroller platforms using the Arduino IDE development environment.
 ## Latest News 6/28/2021
 After reading the following statment in this [document](https://github.com/wasm3/wasm3/blob/main/docs/Interpreter.md#stack-usage) from the wasm3 project ... I decided to try something different with my failing code ... and now it's working on both the esp32 and esp8266 platforms ... No more out of stack ...
 
