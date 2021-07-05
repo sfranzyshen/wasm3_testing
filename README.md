@@ -9,8 +9,9 @@ This repository contains my experiments using the wasm3 webassembly virtual mach
   * [esp8266 Core 2.7.4](https://github.com/esp8266/Arduino)
   * [Adafruit_NeoPixel 1.8.2](https://github.com/adafruit/Adafruit_NeoPixel) 
   * [Wasm3-Arduino 0.5.0](https://github.com/wasm3/wasm3-arduino)
-* [wasi-sdk 12](https://github.com/WebAssembly/wasi-sdk)
+* [wasi-sdk 12](https://github.com/WebAssembly/wasi-sdk) toolchain
   * LLVM 11.0
+* [Wasienv 0.5.3](https://github.com/wasienv/wasienv) toolchain
 * [wasm3-self-compiling](https://github.com/wasm3/wasm3-self-compiling)
 
 ## Latest News 6/28/2021
