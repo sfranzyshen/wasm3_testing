@@ -1,5 +1,8 @@
+#CC='clang-10 --target=wasm32'
+CC='wasicc'
+
 # Compile
-wasicc  -Os                                                   \
+eval $CC -Os                                                   \
         -z stack-size=8192 -Wl,--initial-memory=65536         \
         -Wl,--allow-undefined-file=arduino_api.syms           \
         -Wl,--strip-all -nostdlib                             \
@@ -21,7 +24,7 @@ mv app.wasm app_delay.wasm
 cp app_delay.wasm ../../wasm_vm/data/app_delay.wasm
 #cp app_delay.wasm.h ../../wasm_vm/app_delay.wasm.h
 
-wasicc  -Os                                                   \
+eval $CC -Os                                                   \
         -z stack-size=8192 -Wl,--initial-memory=65536         \
         -Wl,--allow-undefined-file=arduino_api.syms           \
         -Wl,--strip-all -nostdlib                             \

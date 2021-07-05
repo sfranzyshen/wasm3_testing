@@ -2,6 +2,7 @@
 #define arduino_wasm_api_h
 
 #include <stdint.h>
+#include <stddef.h>
 
 #define WASM_EXPORT                   extern "C" __attribute__((used)) __attribute__((visibility ("default")))
 #define WASM_EXPORT_AS(NAME)          WASM_EXPORT __attribute__((export_name(NAME)))
