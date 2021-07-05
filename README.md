@@ -1,5 +1,18 @@
 # Wasm3 Testing #
-This repository contains a test of using wasm3 webassembly virtual machine with the esp microcontroller platforms using the Arduino IDE development environment.
+This repository contains my experiments using the wasm3 webassembly virtual machine on the esp microcontroller platforms. I'm using the Arduino IDE development environment for generating the firmware. All built binaries and tools are included here, but are only useful on a Linux 64bit platform ...
+
+### My development environment:
+* Windows 11 Home (64bit) + WSL2 
+  * Ubuntu 18.04.3 LTS 
+* [Arduino IDE 1.8.10](https://github.com/arduino/arduino-ide)
+  * [esp32 Core 1.0.6](https://github.com/espressif/arduino-esp32)
+  * [esp8266 Core 2.7.4](https://github.com/esp8266/Arduino)
+  * [Adafruit_NeoPixel 1.8.2](https://github.com/adafruit/Adafruit_NeoPixel) 
+  * [Wasm3-Arduino 0.5.0](https://github.com/wasm3/wasm3-arduino)
+* [wasi-sdk 12](https://github.com/WebAssembly/wasi-sdk)
+  * LLVM 11.0
+* [wasm3-self-compiling](https://github.com/wasm3/wasm3-self-compiling)
+
 ## Latest News 6/28/2021
 After reading the following statment in this [document](https://github.com/wasm3/wasm3/blob/main/docs/Interpreter.md#stack-usage) from the wasm3 project ... I decided to try something different with my failing code ... and now it's working on both the esp32 and esp8266 platforms ... No more out of stack ...
 
@@ -24,4 +37,4 @@ Change into the wasm_apps/cpp/ folder and execute the ./build.sh script file. Th
 * The wasm binary files are distrubited with the source ... so you can test things without having the Wasienv toolchain installed.
 
 ### Future Goals
-* create a web interface to edit, compile, and upload wasm sketches
+* create a (self hosted) web interface to edit, compile, and upload wasm sketches to the microcontroller 😊
