@@ -36,6 +36,8 @@ Change into the wasm_apps/cpp/ folder and execute the ./build.sh script file. Th
 * The `#define WASM_FILE`can be either "/app_delay.wasm" or "/app_nodelay.wasm" (or any wasm file you create ...)
 * The `#define LED_PIN` and `#define LED_COUNT` are used to set the led strip settings
 * The wasm binary files are distrubited with the source ... so you can test things without having the Wasienv toolchain installed.
+### ToDo
+* fix compile with wasi-sdk (clang)
 
 ### Future Goals
 * create a (self hosted) web interface to edit, compile, and upload wasm sketches to the microcontroller 😊
