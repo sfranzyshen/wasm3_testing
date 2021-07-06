@@ -30,7 +30,7 @@ You will need to have installed ...
 * Wasienv Toolchain 
 * Download or clone this repository
 
-Change into the wasm_apps/cpp/ folder and execute the ./build.sh script file. This will generate and copy the wasm files to the wasm_vm/data/ folder. Open the wasm_vm/wasm_vm.ino sketch file with the Arduino IDE. Compile and upload the sketch to your device ... and perform a data upload to your device's filesystem ... reboot, you will be now running a wasm sketch, loaded from the filesystem.
+Change into the wasm_apps/cpp/ folder and execute the ./build.sh script file. This will generate and copy the wasm files to the wasm_vm/data/ folder. Open the wasm_vm/wasm_vm.ino sketch file with the Arduino IDE. Compile and upload the sketch to your device ... and perform a data upload to your device's filesystem ... reboot, you will now be running a wasm sketch, loaded from the filesystem.
 
 ### Notes
 * The `#define WASM_FILE`can be either "/app_delay.wasm" or "/app_nodelay.wasm" (or any wasm file you create ...)
