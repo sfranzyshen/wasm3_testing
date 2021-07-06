@@ -41,4 +41,4 @@ Change into the wasm_apps/cpp/ folder and execute the ./build.sh script file. Th
 
 ### Future Goals
 * create a (self hosted) web interface to edit, compile, and upload wasm sketches to the microcontroller 😊
-* create a wasi layer for the esp arduino platforms (just the [esp32-idf-wasi](https://github.com/wasm3/wasm3/tree/main/platforms/embedded/esp32-idf-wasi) layer)
+* create a wasi layer for the esp arduino platforms (just like the [esp32-idf-wasi](https://github.com/wasm3/wasm3/tree/main/platforms/embedded/esp32-idf-wasi) layer demo)
