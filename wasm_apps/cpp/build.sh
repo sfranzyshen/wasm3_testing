@@ -2,7 +2,7 @@
 CC='wasicc'
 
 # Compile
-eval $CC -Os                                                   \
+eval $CC -v -Os                                                   \
         -z stack-size=8192 -Wl,--initial-memory=65536         \
         -Wl,--allow-undefined-file=arduino_api.syms           \
         -Wl,--strip-all -nostdlib                             \
@@ -24,7 +24,7 @@ mv app.wasm app_delay.wasm
 cp app_delay.wasm ../../wasm_vm/data/app_delay.wasm
 #cp app_delay.wasm.h ../../wasm_vm/app_delay.wasm.h
 
-eval $CC -Os                                                   \
+eval $CC -v -Os                                                   \
         -z stack-size=8192 -Wl,--initial-memory=65536         \
         -Wl,--allow-undefined-file=arduino_api.syms           \
         -Wl,--strip-all -nostdlib                             \
