@@ -30,12 +30,15 @@ You will need to have installed ...
 * Wasienv Toolchain 
 * Download or clone this repository
 
-Change into the wasm_apps/cpp/ folder and execute the ./build.sh script file. This will generate and copy the wasm files to the wasm_vm/data/ folder. Open the wasm_vm/wasm_vm.ino sketch file with the Arduino IDE. Compile and upload the sketch to your device ... and perform a data upload to your device's filesystem ... reboot, you will be now running a wasm sketch, loaded from the filesystem.
+Change into the wasm_apps/cpp/ folder and execute the ./build.sh script file. This will generate and copy the wasm files to the wasm_vm/data/ folder. Open the wasm_vm/wasm_vm.ino sketch file with the Arduino IDE. Compile and upload the sketch to your device ... and perform a data upload to your device's filesystem ... reboot, you will now be running a wasm sketch, loaded from the filesystem.
 
 ### Notes
 * The `#define WASM_FILE`can be either "/app_delay.wasm" or "/app_nodelay.wasm" (or any wasm file you create ...)
 * The `#define LED_PIN` and `#define LED_COUNT` are used to set the led strip settings
 * The wasm binary files are distrubited with the source ... so you can test things without having the Wasienv toolchain installed.
+### ToDo
+* fix compile with wasi-sdk (clang)
 
 ### Future Goals
 * create a (self hosted) web interface to edit, compile, and upload wasm sketches to the microcontroller 😊
+* create a wasi layer for the esp arduino platforms (just like the [esp32-idf-wasi](https://github.com/wasm3/wasm3/tree/main/platforms/embedded/esp32-idf-wasi) layer demo)
