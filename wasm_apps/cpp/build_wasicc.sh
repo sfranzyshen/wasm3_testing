@@ -1,4 +1,3 @@
-#CC='clang-10 --target=wasm32'
 CC='wasicc'
 
 # Compile
