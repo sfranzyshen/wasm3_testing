@@ -1,4 +1,4 @@
-#include <arduino_api.h>
+#include "arduino_api.h"
 
 int patternCurrent = 0;              // Current Pattern Number
 
