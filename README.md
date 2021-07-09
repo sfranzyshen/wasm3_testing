@@ -9,9 +9,7 @@ This repository contains my experiments using the wasm3 webassembly virtual mach
   * [esp8266 Core 2.7.4](https://github.com/esp8266/Arduino)
   * [Adafruit_NeoPixel 1.8.2](https://github.com/adafruit/Adafruit_NeoPixel) 
   * [Wasm3-Arduino 0.5.0](https://github.com/wasm3/wasm3-arduino)
-* [wasi-sdk 12](https://github.com/WebAssembly/wasi-sdk) toolchain
-  * LLVM 11.0
-* [Wasienv 0.5.3](https://github.com/wasienv/wasienv) toolchain
+* [wasi-sdk](https://github.com/WebAssembly/wasi-sdk) toolchain
 * [wasm3-self-compiling](https://github.com/wasm3/wasm3-self-compiling)
 
 ## Latest News 6/28/2021
@@ -27,7 +25,6 @@ You will need to have installed ...
 * ESP Core(s) (esp32 and esp8266 are both supported)
 * Wasm3 Arduino Library
 * Adifruit_NeoPixel Library
-* Wasienv Toolchain 
 * Download or clone this repository
 
 Change into the wasm_apps/cpp/ folder and execute the ./build.sh script file. This will generate and copy the wasm files to the wasm_vm/data/ folder. Open the wasm_vm/wasm_vm.ino sketch file with the Arduino IDE. Compile and upload the sketch to your device ... and perform a data upload to your device's filesystem ... reboot, you will now be running a wasm sketch, loaded from the filesystem.
@@ -36,8 +33,6 @@ Change into the wasm_apps/cpp/ folder and execute the ./build.sh script file. Th
 * The `#define WASM_FILE`can be either "/app_delay.wasm" or "/app_nodelay.wasm" (or any wasm file you create ...)
 * The `#define LED_PIN` and `#define LED_COUNT` are used to set the led strip settings
 * The wasm binary files are distrubited with the source ... so you can test things without having the Wasienv toolchain installed.
-### ToDo
-* fix compile with wasi-sdk (clang)
 
 ### Future Goals
 * create a (self hosted) web interface to edit, compile, and upload wasm sketches to the microcontroller 😊

@@ -1,5 +1,5 @@
 ## C++ app
 
-`The cpp directory contains examples for Arduino app (sketch) that are compiled to WebAssembly.  
-Compilation is performed using `wasicc` here, but `clang --target=wasm32` can be used as well.  
-See `build.sh` for details.
+`The cpp directory contains examples of Arduino app (sketch) that are compiled to WebAssembly.  
+Compilation is performed using localized build tools provided by `wasi-sdk` See `build.sh` for details.
+
