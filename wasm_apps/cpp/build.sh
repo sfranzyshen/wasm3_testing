@@ -45,7 +45,7 @@ app_delay.cpp
  -Llib/wasm32-wasi \
  -z stack-size=8192 \
  --initial-memory=65536 \
- --allow-undefined-file=include/arduino_api.syms \
+ --allow-undefined-file=arduino_api.syms \
  --strip-all \
  app_delay.o \
  -o app_delay.wasm
@@ -114,7 +114,7 @@ app_nodelay.cpp
  -Llib/wasm32-wasi \
  -z stack-size=8192 \
  --initial-memory=65536 \
- --allow-undefined-file=include/arduino_api.syms \
+ --allow-undefined-file=arduino_api.syms \
  --strip-all \
  app_nodelay.o \
  -o app_nodelay.wasm
