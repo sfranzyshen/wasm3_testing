@@ -1,0 +1,17 @@
+# h2b - c header file to binary file (xxd -r -i) equivalent
+# converts c header files created with 'xxd -i' back to a binary file
+
+#!/bin/bash
+
+if [ -z "$1" ]
+  then
+	echo "h2b - c header file to binary file"
+    echo "Usage: h2b <Input File> [Output File]"
+else
+	if [ -z "$2" ]
+	then
+		sed -e '/^[^ ]/d' -e 's/0x//g' -e 's/,//g' -e 's/ //g' $1 | xxd -r -p
+	else
+		sed -e '/^[^ ]/d' -e 's/0x//g' -e 's/,//g' -e 's/ //g' $1 | xxd -r -p > $2
+	fi
+fi
