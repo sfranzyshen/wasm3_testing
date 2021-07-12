@@ -41,31 +41,29 @@ bin/clang -cc1 \
 app_delay.cpp
 
 
- bin/wasm-ld \
- -Llib/wasm32-wasi \
- -z stack-size=8192 \
- --initial-memory=65536 \
- --allow-undefined-file=arduino_api.syms \
- --strip-all \
- app_delay.o \
- -o app_delay.wasm
+bin/wasm-ld \
+-Llib/wasm32-wasi \
+-z stack-size=8192 \
+--initial-memory=65536 \
+--allow-undefined-file=arduino_api.syms \
+--strip-all \
+app_delay.o \
+-o app_delay.wasm
  
- 
- # Optimize (optional)
-bin/wasm-opt -O3 app_delay.wasm -o app_delay.wasm
-bin/wasm-strip app_delay.wasm
+# Optimize (optional)
+#bin/wasm-opt -O3 app_delay.wasm -o app_delay.wasm
+#bin/wasm-strip app_delay.wasm
 
 # Convert to WAT
 bin/wasm2wat --generate-names app_delay.wasm -o app_delay.wat
 
 # Convert to C header
-mv app_delay.wasm app.wasm
-xxd -i app.wasm > app_delay.wasm.h
-mv app.wasm app_delay.wasm
+#mv app_delay.wasm app.wasm
+#xxd -i app.wasm > app_delay.wasm.h
+#mv app.wasm app_delay.wasm
 
 # Copy wasm file
 cp app_delay.wasm ../../wasm_vm/data/app_delay.wasm
-
 
 bin/clang -cc1 \
 -triple wasm32-unknown-wasi \
@@ -109,30 +107,26 @@ bin/clang -cc1 \
 -x c++ \
 app_nodelay.cpp
 
-
- bin/wasm-ld \
- -Llib/wasm32-wasi \
- -z stack-size=8192 \
- --initial-memory=65536 \
- --allow-undefined-file=arduino_api.syms \
- --strip-all \
- app_nodelay.o \
- -o app_nodelay.wasm
+bin/wasm-ld \
+-Llib/wasm32-wasi \
+-z stack-size=8192 \
+--initial-memory=65536 \
+--allow-undefined-file=arduino_api.syms \
+--strip-all \
+app_nodelay.o \
+-o app_nodelay.wasm
  
- 
- # Optimize (optional)
-bin/wasm-opt -O3 app_nodelay.wasm -o app_nodelay.wasm
-bin/wasm-strip app_nodelay.wasm
+# Optimize (optional)
+#bin/wasm-opt -O3 app_nodelay.wasm -o app_nodelay.wasm
+#bin/wasm-strip app_nodelay.wasm
 
 # Convert to WAT
 bin/wasm2wat --generate-names app_nodelay.wasm -o app_nodelay.wat
 
 # Convert to C header
-mv app_nodelay.wasm app.wasm
-xxd -i app.wasm > app_nodelay.wasm.h
-mv app.wasm app_nodelay.wasm
+#mv app_nodelay.wasm app.wasm
+#xxd -i app.wasm > app_nodelay.wasm.h
+#mv app.wasm app_nodelay.wasm
 
 # Copy wasm file
 cp app_nodelay.wasm ../../wasm_vm/data/app_nodelay.wasm
-
-
