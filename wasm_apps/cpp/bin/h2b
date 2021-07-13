@@ -1,17 +1,32 @@
-# h2b - c header file to binary file (xxd -r -i) equivalent
-# converts c header files created with 'xxd -i' back to a binary file
-
 #!/bin/bash
 
-if [ -z "$1" ]
-  then
-	echo "h2b - c header file to binary file"
-    echo "Usage: h2b <Input File> [Output File]"
-else
-	if [ -z "$2" ]
+# h2b - c header file to binary file (xxd -r -i) equivalent
+# converts c header files created with 'xxd -i' back to a binary file
+# sfranzyshen July, 2021
+
+if [ -t 0 ]
+then
+    # nopipe
+	if [ -z "$1" ]
 	then
-		sed -e '/^[^ ]/d' -e 's/0x//g' -e 's/,//g' -e 's/ //g' $1 | xxd -r -p
+		echo "h2b - c header file to binary file"
+		echo "Usage: h2b <Input File> [Output File]"
+		echo "Or     | h2b [Output File]"
 	else
-		sed -e '/^[^ ]/d' -e 's/0x//g' -e 's/,//g' -e 's/ //g' $1 | xxd -r -p > $2
+		if [ -z "$2" ]
+		then
+			sed -e '/^[^ ]/d' -e 's/0x//g' -e 's/,//g' -e 's/ //g' $1 | xxd -r -p
+		else
+			sed -e '/^[^ ]/d' -e 's/0x//g' -e 's/,//g' -e 's/ //g' $1 | xxd -r -p > $2
+		fi
 	fi
+else
+    # pipe
+	data=$(cat)
+	if [ -z "$1" ]
+	then
+		echo "$data" | sed -e '/^[^ ]/d' -e 's/0x//g' -e 's/,//g' -e 's/ //g' | xxd -r -p
+	else
+		echo "$data" | sed -e '/^[^ ]/d' -e 's/0x//g' -e 's/,//g' -e 's/ //g' | xxd -r -p > $1
+	fi	
 fi
