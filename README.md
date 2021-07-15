@@ -3,7 +3,7 @@ This repository contains my experiments using the wasm3 webassembly virtual mach
 
 ### My development environment:
 * Windows 11 Home (64bit) + WSL2 
-  * Ubuntu 18.04.3 LTS 
+  * Ubuntu 20.04.2 LTS 
 * [Arduino IDE 1.8.10](https://github.com/arduino/arduino-ide)
   * [esp32 Core 1.0.6](https://github.com/espressif/arduino-esp32)
   * [esp8266 Core 2.7.4](https://github.com/esp8266/Arduino)
