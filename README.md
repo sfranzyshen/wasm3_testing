@@ -1,4 +1,4 @@
-# Wasm3 Testing #
+# ⛑Wasm3 Testing #
 This repository contains my experiments using the wasm3 webassembly virtual machine on the esp microcontroller platforms. I'm using the Arduino IDE development environment for generating the firmware. All built binaries and tools are included here, but are only useful on a Linux 64bit platform ...
 
 ### My development environment:
